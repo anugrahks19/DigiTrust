@@ -1,0 +1,23 @@
+digipin,landmark_type,landmark_name,lat,long
+KP01-AB12-CD,temple,Vadakkunnathan Temple,10.5276,76.2144
+KP01-AB12-CD,school,St Thomas School,10.5280,76.2150
+KP01-AB12-CD,shop,Akshaya Supermarket,10.5272,76.2140
+KP01-AB12-CD,hospital,Jubilee Mission Hospital,10.5265,76.2135
+KP01-AB12-CD,bank,State Bank of India,10.5278,76.2148
+KP02-XY23-EF,temple,Sri Krishna Temple,10.5320,76.2090
+KP02-XY23-EF,school,Bharatiya Vidya Bhavan,10.5315,76.2085
+KP02-XY23-EF,mosque,Juma Masjid,10.5325,76.2095
+KP02-XY23-EF,shop,Reliance Fresh,10.5318,76.2088
+DL01-CD34-GH,temple,Hanuman Mandir,28.6145,77.2095
+DL01-CD34-GH,school,Delhi Public School,28.6150,77.2100
+DL01-CD34-GH,hospital,AIIMS Delhi,28.6135,77.2085
+DL01-CD34-GH,market,Connaught Place Market,28.6140,77.2092
+MH01-MN45-IJ,temple,Siddhivinayak Temple,18.9395,72.8360
+MH01-MN45-IJ,school,St Xavier's School,18.9390,72.8355
+MH01-MN45-IJ,hospital,Breach Candy Hospital,18.9385,72.8350
+BN01-PQ56-KL,temple,ISKCON Temple,12.9720,77.5950
+BN01-PQ56-KL,church,St Mary's Basilica,12.9715,77.5945
+BN01-PQ56-KL,college,IISc Bangalore,12.9710,77.5940
+TN01-RS67-MN,temple,Kapaleeshwarar Temple,13.0830,80.2710
+TN01-RS67-MN,church,San Thome Cathedral,13.0825,80.2705
+TN01-RS67-MN,hospital,Apollo Hospital,13.0820,80.2700

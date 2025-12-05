@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiTrust-AVP | Address Validation Platform</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Leaflet CSS for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- QRCode.js for token QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Axios for API calls -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.2/dist/axios.min.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login-styles.css">
+    <link rel="stylesheet" href="css/character-styles.css">
+    <link rel="stylesheet" href="css/premiumMascot.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/modal.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">🛡️</div>
+                <span class="brand-text">DigiTrust<span class="brand-accent">-AVP</span></span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link active" data-view="submit">Validate Address</a>
+                <a href="#" class="nav-link" data-view="history">History</a>
+                <a href="#" class="nav-link admin-link" data-view="admin">Admin</a>
+            </div>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="theme-icon">🌙</span>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Container -->
+    <main class="main-container">
+        <!-- Submit Address View -->
+        <div id="submitView" class="view active">
+            <div class="container">
+                <div class="hero-section">
+                    <h1 class="hero-title">
+                        Validate Your Address
+                        <span class="gradient-text">with Confidence</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Get instant address verification with AI-powered scoring,
+                        real-world evidence, and blockchain-ready validation tokens
+                    </p>
+                </div>
+                <div class="form-card glass">
+                    <h2 class="form-title">Enter Address Details</h2>
+                    <form id="addressForm">
+                        <!-- User ID -->
+                        <div class="form-group">
+                            <label for="userId">User ID</label>
+                            <input type="text" id="userId" class="form-input" placeholder="e.g., user_123"
+                                value="demo_user_001" required>
+                        </div>
+                        <!-- Two column layout -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="houseNo">House/Building No.</label>
+                                <input type="text" id="houseNo" class="form-input" placeholder="12/345X" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="street">Street/Road</label>
+                                <input type="text" id="street" class="form-input" placeholder="Ambedkar Nagar" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="locality">Locality/Area</label>
+                                <input type="text" id="locality" class="form-input" placeholder="Sector 2" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" class="form-input" placeholder="Thrissur" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="district">District</label>
+                                <input type="text" id="district" class="form-input" placeholder="Thrissur" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" class="form-input" placeholder="Kerala" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pin">PIN Code</label>
+                                <input type="text" id="pin" class="form-input" placeholder="680123" pattern="[0-9]{6}"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="digipin">DIGIPIN</label>
+                                <input type="text" id="digipin" class="form-input" placeholder="AB12-CD34-EF" required>
+                            </div>
+                        </div>
+                        <!-- Map Picker Button -->
+                        <button type="button" class="btn btn-outline" id="mapPickerBtn">
+                            📍 Pick from Map
+                        </button>
+                        <!-- Consent Checkbox -->
+                        <div class="consent-box">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="consentCheck" required>
+                                <span>I consent to validate this address for <strong>KYC purposes</strong> for a
+                                    validity period of <strong>365 days</strong></span>
+                            </label>
+                        </div>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                            <span class="btn-text">Validate Address</span>
+                            <span class="btn-loader hidden">⏳ Processing...</span>
+                        </button>
+                    </form>
+                </div>
+                <!-- Demo Addresses Quick Fill -->
+                <div class="demo-section">
+                    <h3>Quick Demo Addresses</h3>
+                    <div class="demo-cards">
+                        <div class="demo-card" data-demo="high">
+                            <div class="demo-badge">VL3</div>
+                            <div class="demo-title">High Score Urban</div>
+                            <p>Thrissur, Kerala</p>
+                        </div>
+                        <div class="demo-card" data-demo="medium">
+                            <div class="demo-badge">VL2</div>
+                            <div class="demo-title">Medium Score</div>
+                            <p>Delhi NCR</p>
+                        </div>
+                        <div class="demo-card" data-demo="low">
+                            <div class="demo-badge">VL0</div>
+                            <div class="demo-title">Low Score Rural</div>
+                            <p>New Construction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Result View -->
+        <div id="resultView" class="view">
+            <div class="container">
+                <!-- Will be populated dynamically -->
+            </div>
+        </div>
+        <!-- History View -->
+        <div id="historyView" class="view">
+            <div class="container">
+                <h1 class="page-title">Validation History</h1>
+                <div id="historyContainer" class="history-list">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+        <!-- Admin Dashboard View -->
+        <div id="adminView" class="view">
+            <div class="container">
+                <h1 class="page-title">Admin Dashboard</h1>
+                <!-- KPI Cards -->
+                <div id="kpiCards" class="kpi-grid">
+                    <!-- Populated dynamically -->
+                </div>
+                <!-- Validation Queue -->
+                <div class="queue-section">
+                    <h2>Validation Queue</h2>
+                    <div id="queueTable" class="queue-container">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Postman Dashboard View -->
+        <div id="postmanView" class="view">
+            <div class="container">
+                <div class="dashboard-header">
+                    <div>
+                        <h1 class="page-title">Postman Dashboard</h1>
+                        <p>• Active</p>
+                    </div>
+                    <div class="user-badge">
+                        <span class="role-icon">📮</span>
+                        <span>Postman</span>
+                    </div>
+
+                    <!-- Welcome Banner -->
+                    <div class="welcome-banner">
+                        <div class="welcome-banner-content">
+                            <h2 class="welcome-title">Welcome back, Agent!</h2>
+                            <p class="welcome-subtitle">You're logged in as <span class="welcome-id">POSTMAN-01</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">📍</div>
+                        <div class="kpi-value">12</div>
+                        <div class="kpi-label">Pending Routes</div>
+                    </div>
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">✅</div>
+                        <div class="kpi-value">45</div>
+                        <div class="kpi-label">Completed</div>
+                    </div>
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">⚡</div>
+                        <div class="kpi-value">98%</div>
+                        <div class="kpi-label">Efficiency</div>
+                    </div>
+                </div>
+
+                <!-- Actions & List -->
+                <div class="dashboard-content-grid">
+                    <div class="action-section glass">
+                        <h2>Quick Actions</h2>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary btn-lg" onclick="alert('Starting Route Navigation...')">
+                                🗺️ Start Route
+                            </button>
+                            <button class="btn btn-outline btn-lg" onclick="alert('Opening Scanner...')">
+                                📷 Scan Parcel
+                            </button>
+                            <button class="btn btn-outline btn-lg" onclick="addExtraRoute('postman')">
+                                ➕ Add Route
+                            </button>
+                        </div>
+                    </div>
+                    <div class="list-section glass">
+                        <h2>Today's Routes</h2>
+                        <div id="postmanTaskList" class="task-list">
+                            <!-- Populated dynamically -->
+                            <div class="loading-state">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery Dashboard View -->
+        <div id="deliveryView" class="view">
+            <div class="container">
+                <div class="dashboard-header">
+                    <div>
+                        <h1 class="page-title">Delivery Dashboard</h1>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card glass">
+                    <div class="kpi-icon" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">📦</div>
+                    <div class="kpi-value">8</div>
+                    <div class="kpi-label">To Deliver</div>
+                </div>
+                <div class="kpi-card glass">
+                    <div class="kpi-icon" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">🚚</div>
+                    <div class="kpi-value">32</div>
+                    <div class="kpi-label">Delivered</div>
+                </div>
+                <div class="kpi-card glass">
+                    <div class="kpi-icon" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">⭐</div>
+                    <div class="kpi-value">4.9</div>
+                    <div class="kpi-label">Rating</div>
+                </div>
+            </div>
+
+            <!-- Actions & List -->
+            <div class="dashboard-content-grid">
+                <div class="action-section glass">
+                    <h2>Quick Actions</h2>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-lg" onclick="alert('Starting Route Navigation...')">
+                            🗺️ Start Route
+                        </button>
+                        <button class="btn btn-outline btn-lg" onclick="alert('Opening Scanner...')">
+                            📷 Scan Parcel
+                        </button>
+                        <button class="btn btn-outline btn-lg" onclick="addExtraRoute('delivery')">
+                            ➕ Add Route
+                        </button>
+                    </div>
+                </div>
+                <div class="list-section glass">
+                    <h2>Active Deliveries</h2>
+                    <div id="deliveryTaskList" class="task-list">
+                        <!-- Populated dynamically -->
+                        <div class="loading-state">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2>Pick Location from Map</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="map" style="height: 400px; border-radius: 12px;"></div>
+                <p class="map-instruction">Click on the map to select a DIGIPIN cell</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="mapCancelBtn">Cancel</button>
+                <button class="btn btn-primary" id="mapConfirmBtn">Confirm Selection</button>
+            </div>
+        </div>
+    </div>
+    <!-- Consent Modal -->
+    <div id="consentModal" class="modal">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h2>Consent for Address Validation</h2>
+                <button class="modal-close" onclick="closeConsentModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Purpose:</strong> KYC (Know Your Customer) verification</p>
+                <p><strong>Validity Period:</strong> 365 days from today</p>
+                <p><strong>Data Usage:</strong> Your address will be validated using multiple evidence sources including
+                    geographic matching, delivery history, IoT signals, and community validation.</p>
+                <p><strong>Privacy:</strong> All personal identifiers are hashed. Raw data is not exposed.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeConsentModal()">Accept</button>
+            </div>
+        </div>
+    </div>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Add Route Modal -->
+    <div id="addRouteModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>➕ Add New Route</h3>
+                <button class="modal-close" onclick="closeAddRouteModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <label for="routeAddressInput" class="modal-label">Enter the address for the new route:</label>
+                <input type="text" id="routeAddressInput" class="modal-input"
+                    placeholder="e.g., 123 Main Street, City, State - Pincode" autocomplete="off">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeAddRouteModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitAddRoute()">Add Route</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Scripts -->
+
+    <script src="js/app.js"></script>
+    <script src="js/components/premiumMascot.js"></script>
+    <script src="js/components/adminAuth.js"></script>
+    <script src="js/components/mapPicker.js"></script>
+    <script src="js/components/addressForm.js"></script>
+    <script src="js/components/validationResult.js"></script>
+    <script src="js/views/history.js"></script>
+    <script src="js/views/adminDashboard.js"></script>
+    <script src="js/views/agentDashboards.js"></script>
+</body>
+
+</html>

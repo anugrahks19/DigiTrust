@@ -1,0 +1,201 @@
+test_id,category,house_no,street,locality,city,district,state,pin,digipin,verified_acs,verified_vl,verified_lat,verified_long,fraud_label,data_quality,notes
+gt_001,urban_high,12/345,MG Road,Swaraj Round,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,92.5,VL3,10.5276,76.2144,False,Complete,Perfect PIN-DIGIPIN match + temple landmark
+gt_002,urban_high,23/456,Near Vadakkunnathan Temple,Round East,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,91.2,VL3,10.5278,76.2146,False,Complete,Major temple landmark referenced
+gt_003,urban_high,45A,Station Road,Railway Colony,Thrissur,Thrissur,Kerala,680002,KP02-XY23-EF,89.8,VL3,10.5318,76.2089,False,Complete,Good delivery history + IoT signals
+gt_004,urban_high,101,Opposite St Thomas School,Palayam,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,90.5,VL3,10.5280,76.2150,False,Complete,School landmark match
+gt_005,urban_high,67B,Palace Road,East Fort,Thrissur,Thrissur,Kerala,680005,KP02-XY23-EF,88.9,VL3,10.5320,76.2090,False,Complete,Good geo precision
+gt_006,urban_high,234,Connaught Place,Central Delhi,New Delhi,New Delhi,Delhi,110001,DL01-CD34-GH,91.7,VL3,28.6139,77.2090,False,Complete,Major urban center
+gt_007,urban_high,89,Near AIIMS Delhi,Ansari Nagar,New Delhi,New Delhi,Delhi,110029,DL01-CD34-GH,90.3,VL3,28.6135,77.2085,False,Complete,Hospital landmark
+gt_008,urban_high,156,Janpath,Central Zone,New Delhi,New Delhi,Delhi,110001,DL01-CD34-GH,89.1,VL3,28.6150,77.2100,False,Complete,Commercial area
+gt_009,urban_high,45,Marine Drive,Nariman Point,Mumbai,Mumbai,Maharashtra,400001,MH01-MN45-IJ,92.3,VL3,18.9388,72.8354,False,Complete,Iconic location
+gt_010,urban_high,78,Near Siddhivinayak Temple,Prabhadevi,Mumbai,Mumbai,Maharashtra,400025,MH01-MN45-IJ,91.5,VL3,18.9395,72.8360,False,Complete,Famous temple
+gt_011,urban_high,123,Colaba Causeway,Colaba,Mumbai,Mumbai,Maharashtra,400001,MH01-MN45-IJ,90.8,VL3,18.9390,72.8355,False,Complete,Tourist area
+gt_012,urban_high,67,MG Road,Richmond Town,Bangalore,Bangalore,Karnataka,560001,BN01-PQ56-KL,91.0,VL3,12.9716,77.5946,False,Complete,Major commercial road
+gt_013,urban_high,234,Brigade Road,Ashok Nagar,Bangalore,Bangalore,Karnataka,560001,BN01-PQ56-KL,89.9,VL3,12.9720,77.5950,False,Complete,Shopping district
+gt_014,urban_high,89,Near ISKCON Temple,Rajaji Nagar,Bangalore,Bangalore,Karnataka,560010,BN01-PQ56-KL,90.7,VL3,12.9715,77.5945,False,Complete,Temple landmark
+gt_015,urban_high,156,Anna Salai,Thousand Lights,Chennai,Chennai,Tamil Nadu,600001,TN01-RS67-MN,91.8,VL3,13.0827,80.2707,False,Complete,Main arterial road
+gt_016,urban_high,45,Near Kapaleeshwarar Temple,Mylapore,Chennai,Chennai,Tamil Nadu,600004,TN01-RS67-MN,90.5,VL3,13.0830,80.2710,False,Complete,Historic temple
+gt_017,urban_high,78,TTK Road,Alwarpet,Chennai,Chennai,Tamil Nadu,600018,TN01-RS67-MN,89.6,VL3,13.0820,80.2700,False,Complete,Residential premium area
+gt_018,urban_high,234,Banjara Hills,Road No 1,Hyderabad,Hyderabad,Telangana,500001,HY01-TU78-OP,92.1,VL3,17.3850,78.4867,False,Complete,Upscale locality
+gt_019,urban_high,67,Jubilee Hills,Film Nagar,Hyderabad,Hyderabad,Telangana,500033,HY01-TU78-OP,90.9,VL3,17.3924,78.4863,False,Complete,Premium area
+gt_020,urban_high,123,Park Street,Central Kolkata,Kolkata,Kolkata,West Bengal,700001,KL01-VW89-QR,91.4,VL3,22.5726,88.3639,False,Complete,Commercial hub
+gt_021,urban_high,89,Near Victoria Memorial,Maidan,Kolkata,Kolkata,West Bengal,700071,KL01-VW89-QR,90.2,VL3,22.5775,88.3525,False,Complete,Landmark monument
+gt_022,urban_high,45,FC Road,Deccan,Pune,Pune,Maharashtra,411001,PN01-XY90-ST,89.7,VL3,18.5204,73.8567,False,Complete,Educational hub
+gt_023,urban_high,178,Koregaon Park,East Pune,Pune,Pune,Maharashtra,411001,PN01-XY90-ST,90.4,VL3,18.5089,73.8553,False,Complete,Upscale residential
+gt_024,urban_high,234,Behind Reliance Fresh,Sector 2,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,88.7,VL3,10.5272,76.2140,False,Complete,Shop landmark
+gt_025,urban_high,67,Near State Bank,Round South,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,89.3,VL3,10.5278,76.2148,False,Complete,Bank landmark
+gt_026,urban_high,12,Opp Juma Masjid,Muslim Street,Thrissur,Thrissur,Kerala,680002,KP02-XY23-EF,88.9,VL3,10.5325,76.2095,False,Complete,Mosque landmark
+gt_027,urban_high,145,Near Jubilee Hospital,Medical Road,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,90.1,VL3,10.5265,76.2135,False,Complete,Hospital reference
+gt_028,urban_high,78,Bharatiya Vidya Bhavan School Road,Education Zone,Thrissur,Thrissur,Kerala,680002,KP02-XY23-EF,89.5,VL3,10.5315,76.2085,False,Complete,School area
+gt_029,urban_high,234,Market Lane,Shopping District,Thrissur,Thrissur,Kerala,680002,KP02-XY23-EF,88.6,VL3,10.5318,76.2088,False,Complete,Market reference
+gt_030,urban_high,56,Temple Street,Heritage Zone,Thrissur,Thrissur,Kerala,680002,KP02-XY23-EF,89.8,VL3,10.5320,76.2090,False,Complete,Temple street
+gt_031,urban_high,123,Round Road,City Center,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,90.3,VL3,10.5276,76.2144,False,Complete,Central location
+gt_032,urban_high,89,Station Approach,Railway Area,Thrissur,Thrissur,Kerala,680002,KP02-XY23-EF,89.1,VL3,10.5318,76.2089,False,Complete,Near railway
+gt_033,urban_high,45,Behind Bus Stand,Transport Nagar,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,88.8,VL3,10.5276,76.2144,False,Complete,Bus stand reference
+gt_034,urban_high,167,Near Akshaya Supermarket,Shopping Zone,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,89.4,VL3,10.5272,76.2140,False,Complete,Supermarket landmark
+gt_035,urban_high,234,Palace Road North,Royal District,Thrissur,Thrissur,Kerala,680005,KP02-XY23-EF,90.0,VL3,10.5320,76.2090,False,Complete,Historic area
+gt_036,urban_high,78,Near Sri Krishna Temple,Temple Town,Thrissur,Thrissur,Kerala,680002,KP02-XY23-EF,91.1,VL3,10.5320,76.2090,False,Complete,Temple reference
+gt_037,urban_high,123,East Fort Road,Fort Area,Thrissur,Thrissur,Kerala,680005,KP02-XY23-EF,89.6,VL3,10.5320,76.2090,False,Complete,Fort landmark
+gt_038,urban_high,45,West Nada,Festival Grounds,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,90.2,VL3,10.5276,76.2144,False,Complete,Cultural area
+gt_039,urban_high,89,Chembotti Lane,Residential,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,88.9,VL3,10.5276,76.2144,False,Complete,Good locality
+gt_040,urban_high,234,Kokkalai,East Zone,Thrissur,Thrissur,Kerala,680001,KP01-AB12-CD,89.7,VL3,10.5276,76.2144,False,Complete,Established area
+gt_041,urban_medium,156,Satellite Road,IT Park,Bangalore,Bangalore,Karnataka,560001,BN01-PQ56-KL,78.5,VL2,12.9716,77.5946,False,Complete,IT corridor
+gt_042,urban_medium,234,Whitefield,Tech Zone,Bangalore,Bangalore,Karnataka,560066,BN01-PQ56-KL,76.8,VL2,12.9716,77.5946,False,Complete,Emerging area
+gt_043,urban_medium,89,HSR Layout,Sector 1,Bangalore,Bangalore,Karnataka,560102,BN01-PQ56-KL,77.9,VL2,12.9716,77.5946,False,Complete,Residential layout
+gt_044,urban_medium,67,Indiranagar,100 Feet Road,Bangalore,Bangalore,Karnataka,560038,BN01-PQ56-KL,79.2,VL2,12.9716,77.5946,False,Complete,Established locality
+gt_045,urban_medium,123,Jayanagar,4th Block,Bangalore,Bangalore,Karnataka,560011,BN01-PQ56-KL,78.1,VL2,12.9716,77.5946,False,Complete,Old Bangalore
+gt_046,urban_medium,45,Malleswaram,18th Cross,Bangalore,Bangalore,Karnataka,560003,BN01-PQ56-KL,76.5,VL2,12.9716,77.5946,False,Partial,Heritage area limited data
+gt_047,urban_medium,234,Yelahanka,New Town,Bangalore,Bangalore,Karnataka,560064,BN01-PQ56-KL,75.3,VL2,12.9716,77.5946,False,Partial,Peripheral area
+gt_048,urban_medium,78,Marathahalli,Outer Ring,Bangalore,Bangalore,Karnataka,560037,BN01-PQ56-KL,77.6,VL2,12.9716,77.5946,False,Complete,IT hub
+gt_049,urban_medium,156,Electronic City,Phase 1,Bangalore,Bangalore,Karnataka,560100,BN01-PQ56-KL,76.9,VL2,12.9716,77.5946,False,Complete,Industrial area
+gt_050,urban_medium,89,Sarjapur Road,Residential,Bangalore,Bangalore,Karnataka,560035,BN01-PQ56-KL,78.8,VL2,12.9716,77.5946,False,Complete,Growing locality
+gt_051,urban_medium,67,Banashankari,3rd Stage,Bangalore,Bangalore,Karnataka,560085,BN01-PQ56-KL,77.2,VL2,12.9716,77.5946,False,Complete,Residential
+gt_052,urban_medium,234,BTM Layout,2nd Stage,Bangalore,Bangalore,Karnataka,560076,BN01-PQ56-KL,79.1,VL2,12.9716,77.5946,False,Complete,Mixed use
+gt_053,urban_medium,123,Koramangala,5th Block,Bangalore,Bangalore,Karnataka,560095,BN01-PQ56-KL,80.3,VL2,12.9716,77.5946,False,Complete,Premium residential
+gt_054,urban_medium,45,JP Nagar,7th Phase,Bangalore,Bangalore,Karnataka,560078,BN01-PQ56-KL,76.7,VL2,12.9716,77.5946,False,Partial,Outer area
+gt_055,urban_medium,178,Rajajinagar,Industrial Town,Bangalore,Bangalore,Karnataka,560044,BN01-PQ56-KL,75.9,VL2,12.9716,77.5946,False,Partial,Mixed development
+gt_056,urban_medium,89,Hebbal,Flyover Area,Bangalore,Bangalore,Karnataka,560024,BN01-PQ56-KL,77.4,VL2,12.9716,77.5946,False,Complete,Transport hub
+gt_057,urban_medium,234,Yeshwanthpur,Station Road,Bangalore,Bangalore,Karnataka,560022,BN01-PQ56-KL,78.6,VL2,12.9716,77.5946,False,Complete,Railway area
+gt_058,urban_medium,67,Sadashivanagar,Residential,Bangalore,Bangalore,Karnataka,560080,BN01-PQ56-KL,79.8,VL2,12.9716,77.5946,False,Complete,Upscale area
+gt_059,urban_medium,123,Basavanagudi,Bull Temple Road,Bangalore,Bangalore,Karnataka,560004,BN01-PQ56-KL,77.1,VL2,12.9716,77.5946,False,Complete,Heritage locality
+gt_060,urban_medium,45,Vijayanagar,Chord Road,Bangalore,Bangalore,Karnataka,560040,BN01-PQ56-KL,76.3,VL2,12.9716,77.5946,False,Partial,Developing area
+gt_061,urban_medium,178,Peenya,Industrial Area,Bangalore,Bangalore,Karnataka,560058,BN01-PQ56-KL,75.5,VL2,12.9716,77.5946,False,Partial,Industrial zone
+gt_062,urban_medium,89,RT Nagar,CMH Road,Bangalore,Bangalore,Karnataka,560032,BN01-PQ56-KL,77.9,VL2,12.9716,77.5946,False,Complete,Residential
+gt_063,urban_medium,234,Vidyaranyapura,New Extension,Bangalore,Bangalore,Karnataka,560097,BN01-PQ56-KL,74.8,VL2,12.9716,77.5946,False,Partial,Emerging locality
+gt_064,urban_medium,67,Nagarbhavi,Main Road,Bangalore,Bangalore,Karnataka,560072,BN01-PQ56-KL,76.6,VL2,12.9716,77.5946,False,Partial,Suburban
+gt_065,urban_medium,123,Kengeri,Satellite Town,Bangalore,Bangalore,Karnataka,560060,BN01-PQ56-KL,75.2,VL2,12.9716,77.5946,False,Partial,Peripheral area
+gt_066,urban_medium,45,Rajarajeshwari,Nagar Layout,Bangalore,Bangalore,Karnataka,560098,BN01-PQ56-KL,76.8,VL2,12.9716,77.5946,False,Partial,Growing suburb
+gt_067,urban_medium,178,Uttarahalli,Forest Area,Bangalore,Bangalore,Karnataka,560061,BN01-PQ56-KL,74.5,VL2,12.9716,77.5946,False,Sparse,Green belt
+gt_068,urban_medium,89,Bommanahalli,Hosur Road,Bangalore,Bangalore,Karnataka,560068,BN01-PQ56-KL,77.3,VL2,12.9716,77.5946,False,Complete,IT corridor
+gt_069,urban_medium,234,Bellandur,Lake View,Bangalore,Bangalore,Karnataka,560103,BN01-PQ56-KL,78.7,VL2,12.9716,77.5946,False,Complete,Tech hub
+gt_070,urban_medium,67,Kasavanahalli,Off Sarjapur,Bangalore,Bangalore,Karnataka,560035,BN01-PQ56-KL,76.1,VL2,12.9716,77.5946,False,Partial,Growing area
+gt_071,urban_medium,123,Carmelaram,Residential,Bangalore,Bangalore,Karnataka,560035,BN01-PQ56-KL,75.7,VL2,12.9716,77.5946,False,Partial,New layout
+gt_072,urban_medium,45,Brookefield,Lake Area,Bangalore,Bangalore,Karnataka,560037,BN01-PQ56-KL,77.8,VL2,12.9716,77.5946,False,Complete,Planned locality
+gt_073,urban_medium,178,CV Raman Nagar,East Zone,Bangalore,Bangalore,Karnataka,560093,BN01-PQ56-KL,78.4,VL2,12.9716,77.5946,False,Complete,Residential
+gt_074,urban_medium,89,Hoodi,Whitefield Road,Bangalore,Bangalore,Karnataka,560048,BN01-PQ56-KL,76.9,VL2,12.9716,77.5946,False,Partial,Developing
+gt_075,urban_medium,234,Varthur,ORR Junction,Bangalore,Bangalore,Karnataka,560087,BN01-PQ56-KL,75.4,VL2,12.9716,77.5946,False,Partial,Peripheral
+gt_076,urban_medium,67,Kadugodi,Tree Park,Bangalore,Bangalore,Karnataka,560067,BN01-PQ56-KL,76.5,VL2,12.9716,77.5946,False,Partial,Semi-urban
+gt_077,urban_medium,123,Hoskote Road,Highway,Bangalore,Bangalore,Karnataka,560067,BN01-PQ56-KL,74.2,VL2,12.9716,77.5946,False,Sparse,Outskirts
+gt_078,urban_medium,45,Devanahalli,Airport Road,Bangalore,Bangalore,Karnataka,560300,BN01-PQ56-KL,73.8,VL2,12.9716,77.5946,False,Sparse,Far suburb
+gt_079,urban_medium,178,Hennur,Banaswadi Road,Bangalore,Bangalore,Karnataka,560043,BN01-PQ56-KL,77.6,VL2,12.9716,77.5946,False,Complete,Growing locality
+gt_080,urban_medium,89,Kalyan Nagar,HRBR Layout,Bangalore,Bangalore,Karnataka,560043,BN01-PQ56-KL,79.5,VL2,12.9716,77.5946,False,Complete,Premium residential
+gt_081,suburban_mixed,234,Sector 15,New Layout,Gurgaon,Gurgaon,Haryana,122001,GG01-AB23-CD,68.5,VL2,28.4595,77.0266,False,Partial,New development
+gt_082,suburban_mixed,67,DLF Phase 2,Golf Course,Gurgaon,Gurgaon,Haryana,122002,GG01-AB23-CD,72.3,VL2,28.4595,77.0266,False,Complete,Planned township
+gt_083,suburban_mixed,123,Sohna Road,Residential,Gurgaon,Gurgaon,Haryana,122018,GG01-AB23-CD,65.8,VL2,28.4595,77.0266,False,Partial,Developing corridor
+gt_084,suburban_mixed,45,MG Road,Commercial,Gurgaon,Gurgaon,Haryana,122001,GG01-AB23-CD,70.1,VL2,28.4595,77.0266,False,Complete,Business district
+gt_085,suburban_mixed,178,Udyog Vihar,Industrial,Gurgaon,Gurgaon,Haryana,122016,GG01-AB23-CD,66.7,VL2,28.4595,77.0266,False,Partial,Industrial area
+gt_086,suburban_mixed,89,Palam Vihar,Extension,Gurgaon,Gurgaon,Haryana,122017,GG01-AB23-CD,64.2,VL2,28.4595,77.0266,False,Partial,Suburban extension
+gt_087,suburban_mixed,234,Sushant Lok,Phase 1,Gurgaon,Gurgaon,Haryana,122009,GG01-AB23-CD,71.5,VL2,28.4595,77.0266,False,Complete,Residential complex
+gt_088,suburban_mixed,67,South City,Sector 49,Gurgaon,Gurgaon,Haryana,122018,GG01-AB23-CD,69.8,VL2,28.4595,77.0266,False,Complete,Gated community
+gt_089,suburban_mixed,123,Bhondsi,Village Road,Gurgaon,Gurgaon,Haryana,122102,GG01-AB23-CD,58.3,VL1,28.4595,77.0266,False,Sparse,Village integration
+gt_090,suburban_mixed,45,Manesar,Industrial Zone,Gurgaon,Gurgaon,Haryana,122050,GG01-AB23-CD,61.7,VL2,28.4595,77.0266,False,Partial,Manufacturing hub
+gt_091,suburban_mixed,178,Faridabad,NIT Extension,Faridabad,Faridabad,Haryana,121001,FB01-XY45-EF,67.4,VL2,28.4089,77.3178,False,Partial,Urban sprawl
+gt_092,suburban_mixed,89,Greater Noida,Residential,Noida,Gautam Buddha Nagar,Uttar Pradesh,201310,GN01-PQ67-GH,69.2,VL2,28.4744,77.5040,False,Partial,Planned city
+gt_093,suburban_mixed,234,Noida Extension,New Sector,Noida,Gautam Buddha Nagar,Uttar Pradesh,201301,GN01-PQ67-GH,63.8,VL2,28.5355,77.3910,False,Partial,Developing area
+gt_094,suburban_mixed,67,NH24 Highway,Service Road,Ghaziabad,Ghaziabad,Uttar Pradesh,201001,GZ01-RS89-IJ,60.5,VL1,28.6692,77.4538,False,Sparse,Highway adjacent
+gt_095,suburban_mixed,123,Vasundhara,Sector 5,Ghaziabad,Ghaziabad,Uttar Pradesh,201012,GZ01-RS89-IJ,66.9,VL2,28.6692,77.4538,False,Partial,Residential township
+gt_096,suburban_mixed,45,Indirapuram,Habitat Centre,Ghaziabad,Ghaziabad,Uttar Pradesh,201014,GZ01-RS89-IJ,68.1,VL2,28.6405,77.3733,False,Partial,Planned development
+gt_097,suburban_mixed,178,Raj Nagar,Extension II,Ghaziabad,Ghaziabad,Uttar Pradesh,201017,GZ01-RS89-IJ,62.4,VL1,28.6692,77.4538,False,Partial,Growing suburb
+gt_098,suburban_mixed,89,Crossings Republik,Township,Ghaziabad,Ghaziabad,Uttar Pradesh,201016,GZ01-RS89-IJ,64.7,VL2,28.6692,77.4538,False,Partial,New township
+gt_099,suburban_mixed,234,Loni,Border Area,Ghaziabad,Ghaziabad,Uttar Pradesh,201102,GZ01-RS89-IJ,57.2,VL1,28.7514,77.2871,False,Sparse,Semi-urban
+gt_100,suburban_mixed,67,Modinagar,Industrial Town,Ghaziabad,Ghaziabad,Uttar Pradesh,201204,GZ01-RS89-IJ,59.8,VL1,28.8305,77.6167,False,Sparse,Industrial township
+gt_101,suburban_mixed,123,Meerut Road,Bypass,Ghaziabad,Ghaziabad,Uttar Pradesh,201003,GZ01-RS89-IJ,61.3,VL1,28.6692,77.4538,False,Partial,Highway corridor
+gt_102,suburban_mixed,45,Navi Mumbai,Vashi Sector,Navi Mumbai,Thane,Maharashtra,400703,NM01-TU01-KL,70.2,VL2,19.0760,72.8777,False,Complete,Planned city
+gt_103,suburban_mixed,178,Thane West,Ghodbunder Road,Thane,Thane,Maharashtra,400607,TH01-VW23-MN,68.9,VL2,19.2183,72.9781,False,Partial,Suburban Mumbai
+gt_104,suburban_mixed,89,Panvel,New Town,Panvel,Raigad,Maharashtra,410206,PV01-XY45-OP,63.5,VL2,18.9894,73.1215,False,Partial,Emerging city
+gt_105,suburban_mixed,234,Kharghar,Sector 20,Navi Mumbai,Thane,Maharashtra,410210,NM01-TU01-KL,71.8,VL2,19.0433,73.0667,False,Complete,Planned residential
+gt_106,suburban_mixed,67,Airoli,Industrial Park,Navi Mumbai,Thane,Maharashtra,400708,NM01-TU01-KL,69.5,VL2,19.1507,72.9944,False,Complete,Industrial zone
+gt_107,suburban_mixed,123,Nerul,Sector 45,Navi Mumbai,Thane,Maharashtra,400706,NM01-TU01-KL,72.1,VL2,19.0330,73.0297,False,Complete,Residential sector
+gt_108,suburban_mixed,45,Belapur,CBD,Navi Mumbai,Thane,Maharashtra,400614,NM01-TU01-KL,73.4,VL2,19.0176,73.0358,False,Complete,Business district
+gt_109,suburban_mixed,178,Kalamboli,Highway Zone,Navi Mumbai,Thane,Maharashtra,410218,NM01-TU01-KL,65.7,VL2,19.0433,73.1333,False,Partial,Developing area
+gt_110,suburban_mixed,89,Taloja,MIDC,Panvel,Raigad,Maharashtra,410208,PV01-XY45-OP,62.9,VL1,19.0500,73.1833,False,Partial,Industrial area
+gt_111,suburban_mixed,234,Ulwe,Node,Navi Mumbai,Raigad,Maharashtra,410206,NM01-TU01-KL,61.4,VL1,18.9500,73.0167,False,Sparse,Under development
+gt_112,suburban_mixed,67,Karanjade,Village Integration,Panvel,Raigad,Maharashtra,410206,PV01-XY45-OP,58.6,VL1,19.0167,73.1000,False,Sparse,Rural-urban fringe
+gt_113,suburban_mixed,123,Pimpri Chinchwad,PCMC,Pimpri-Chinchwad,Pune,Maharashtra,411018,PC01-AB67-QR,66.8,VL2,18.6298,73.7997,False,Partial,Industrial twin city
+gt_114,suburban_mixed,45,Kharadi,IT Park,Pune,Pune,Maharashtra,411014,PN01-XY90-ST,71.5,VL2,18.5515,73.9474,False,Complete,IT corridor
+gt_115,suburban_mixed,178,Hinjewadi,Phase 2,Pune,Pune,Maharashtra,411057,PN01-XY90-ST,70.3,VL2,18.5992,73.7382,False,Complete,Tech park
+gt_116,suburban_mixed,89,Wakad,Residential,Pune,Pune,Maharashtra,411057,PN01-XY90-ST,68.7,VL2,18.5996,73.7677,False,Partial,Growing suburb
+gt_117,suburban_mixed,234,Baner,Hill Road,Pune,Pune,Maharashtra,411045,PN01-XY90-ST,69.9,VL2,18.5593,73.7812,False,Partial,Upscale suburb
+gt_118,suburban_mixed,67,Aundh,Residential,Pune,Pune,Maharashtra,411007,PN01-XY90-ST,72.8,VL2,18.5592,73.8077,False,Complete,Premium locality
+gt_119,suburban_mixed,123,Hadapsar,Industrial,Pune,Pune,Maharashtra,411028,PN01-XY90-ST,67.2,VL2,18.5089,73.9260,False,Partial,Mixed use
+gt_120,suburban_mixed,45,Magarpatta,City,Pune,Pune,Maharashtra,411028,PN01-XY90-ST,74.6,VL2,18.5167,73.9333,False,Complete,Integrated township
+gt_121,rural_low,234,Village Road,Panchayat Office,Palakkad,Palakkad,Kerala,678001,PK01-AB12-CD,45.3,VL1,10.7867,76.6548,False,Sparse,Rural area
+gt_122,rural_low,67,Near Temple,Village Center,Alappuzha,Alappuzha,Kerala,688001,AP01-CD34-EF,48.7,VL1,9.4981,76.3388,False,Sparse,Temple reference only
+gt_123,rural_low,123,Farm House,Agricultural Zone,Kottayam,Kottayam,Kerala,686001,KT01-EF56-GH,42.1,VL1,9.5916,76.5222,False,Sparse,Farm area
+gt_124,rural_low,45,Behind School,Education Block,Kollam,Kollam,Kerala,691001,KM01-GH78-IJ,46.9,VL1,8.8932,76.6141,False,Sparse,School landmark
+gt_125,rural_low,178,Main Road,Junction,Kannur,Kannur,Kerala,670001,KN01-IJ90-KL,44.5,VL1,11.8745,75.3704,False,Sparse,Rural junction
+gt_126,rural_low,89,Near Ration Shop,Supply Zone,Kasaragod,Kasaragod,Kerala,671121,KS01-KL12-MN,43.2,VL1,12.4996,74.9869,False,Sparse,Ration shop reference
+gt_127,rural_low,234,Opposite Post Office,Communication Hub,Wayanad,Wayanad,Kerala,673121,WY01-MN34-OP,47.8,VL1,11.6854,76.1320,False,Sparse,Post office landmark
+gt_128,rural_low,67,Near Primary Health Centre,Medical Zone,Idukki,Idukki,Kerala,685501,IK01-OP56-QR,45.9,VL1,9.9189,77.1025,False,Sparse,PHC reference
+gt_129,rural_low,123,Village Square,Community Center,Pathanamthitta,Pathanamthitta,Kerala,689645,PT01-QR78-ST,44.1,VL1,9.2648,76.7870,False,Sparse,Village center
+gt_130,rural_low,45,Near Panchayat,Administrative Block,Thrissur,Thrissur,Kerala,680541,KP03-ST90-UV,46.3,VL1,10.5276,76.2144,False,Sparse,Rural Thrissur
+gt_131,rural_low,178,Church Road,Religious Zone,Ernakulam,Ernakulam,Kerala,683501,ER01-UV12-WX,48.2,VL1,9.9816,76.2999,False,Sparse,Church landmark
+gt_132,rural_low,89,Toddy Shop Junction,Commercial Point,Malappuram,Malappuram,Kerala,676101,MP01-WX34-YZ,42.7,VL1,11.0732,76.0740,False,Sparse,Local shop
+gt_133,rural_low,234,Near Madrasa,Education Zone,Malappuram,Malappuram,Kerala,676505,MP01-WX34-YZ,43.9,VL1,11.0732,76.0740,False,Sparse,Madrasa reference
+gt_134,rural_low,67,Mosque Road,Religious Area,Kasaragod,Kasaragod,Kerala,671541,KS01-KL12-MN,44.8,VL1,12.4996,74.9869,False,Sparse,Mosque landmark
+gt_135,rural_low,123,Anganwadi Center,Child Care,Wayanad,Wayanad,Kerala,670731,WY01-MN34-OP,45.6,VL1,11.6854,76.1320,False,Sparse,Anganwadi reference
+gt_136,rural_low,45,Near Milk Society,Cooperative,Idukki,Idukki,Kerala,685509,IK01-OP56-QR,46.7,VL1,9.9189,77.1025,False,Sparse,Milk society
+gt_137,rural_low,178,Bus Stop,Transport Point,Kottayam,Kottayam,Kerala,686143,KT01-EF56-GH,47.3,VL1,9.5916,76.5222,False,Sparse,Bus stop reference
+gt_138,rural_low,89,Near Tea Shop,Local Point,Palakkad,Palakkad,Kerala,678582,PK01-AB12-CD,41.9,VL1,10.7867,76.6548,False,Sparse,Tea shop landmark
+gt_139,rural_low,234,Paddy Field Road,Agricultural,Alappuzha,Alappuzha,Kerala,688013,AP01-CD34-EF,40.5,VL0,9.4981,76.3388,False,Sparse,Farm road
+gt_140,rural_low,67,Boat Jetty,Water Transport,Alappuzha,Alappuzha,Kerala,688001,AP01-CD34-EF,43.4,VL1,9.4981,76.3388,False,Sparse,Jetty reference
+gt_141,rural_low,123,Near Rubber Estate,Plantation,Kottayam,Kottayam,Kerala,686651,KT01-EF56-GH,44.2,VL1,9.5916,76.5222,False,Sparse,Estate area
+gt_142,rural_low,45,Cashew Factory Road,Processing Zone,Kollam,Kollam,Kerala,691583,KM01-GH78-IJ,45.1,VL1,8.8932,76.6141,False,Sparse,Factory vicinity
+gt_143,rural_low,178,Near Spice Market,Trade Zone,Idukki,Idukki,Kerala,685565,IK01-OP56-QR,46.8,VL1,9.9189,77.1025,False,Sparse,Market reference
+gt_144,rural_low,89,Tribal Settlement,Indigenous Area,Wayanad,Wayanad,Kerala,673575,WY01-MN34-OP,38.6,VL0,11.6854,76.1320,False,Sparse,Remote tribal area
+gt_145,rural_low,234,Forest Check Post,Border Area,Idukki,Idukki,Kerala,685619,IK01-OP56-QR,39.2,VL0,9.9189,77.1025,False,Sparse,Forest boundary
+gt_146,rural_low,67,Near Kalari,Martial Arts Center,Kannur,Kannur,Kerala,670562,KN01-IJ90-KL,45.4,VL1,11.8745,75.3704,False,Sparse,Kalari reference
+gt_147,rural_low,123,Fishing Village,Coastal Area,Kannur,Kannur,Kerala,670142,KN01-IJ90-KL,44.6,VL1,11.8745,75.3704,False,Sparse,Coastal settlement
+gt_148,rural_low,45,Near Beedi Factory,Small Industry,Kannur,Kannur,Kerala,670641,KN01-IJ90-KL,43.8,VL1,11.8745,75.3704,False,Sparse,Beedi unit
+gt_149,rural_low,178,Hill Station Road,Tourist Area,Idukki,Idukki,Kerala,685612,IK01-OP56-QR,48.9,VL1,9.9189,77.1025,False,Sparse,Hill area
+gt_150,rural_low,89,Dam Site,Reservoir Area,Idukki,Idukki,Kerala,685602,IK01-OP56-QR,41.7,VL1,9.9189,77.1025,False,Sparse,Dam vicinity
+gt_151,rural_low,234,Near Wildlife Sanctuary,Protected Zone,Wayanad,Wayanad,Kerala,673122,WY01-MN34-OP,40.3,VL0,11.6854,76.1320,False,Sparse,Sanctuary border
+gt_152,rural_low,67,Cardamom Estate,Spice Plantation,Idukki,Idukki,Kerala,685531,IK01-OP56-QR,42.8,VL1,9.9189,77.1025,False,Sparse,Plantation area
+gt_153,rural_low,123,Near Coffee Plantation,Agricultural,Wayanad,Wayanad,Kerala,673577,WY01-MN34-OP,43.5,VL1,11.6854,76.1320,False,Sparse,Coffee estate
+gt_154,rural_low,45,Elephant Corridor,Wildlife Zone,Wayanad,Wayanad,Kerala,670721,WY01-MN34-OP,37.9,VL0,11.6854,76.1320,False,Sparse,Protected corridor
+gt_155,rural_low,178,Near Waterfall,Tourist Spot,Idukki,Idukki,Kerala,685619,IK01-OP56-QR,44.9,VL1,9.9189,77.1025,False,Sparse,Waterfall area
+gt_156,rural_low,89,Teak Plantation,Forestry,Wayanad,Wayanad,Kerala,673579,WY01-MN34-OP,41.2,VL1,11.6854,76.1320,False,Sparse,Forest plantation
+gt_157,rural_low,234,Near Pineapple Farm,Fruit Cultivation,Kottayam,Kottayam,Kerala,686652,KT01-EF56-GH,45.7,VL1,9.5916,76.5222,False,Sparse,Farm area
+gt_158,rural_low,67,Coconut Grove,Plantation,Kollam,Kollam,Kerala,691584,KM01-GH78-IJ,46.2,VL1,8.8932,76.6141,False,Sparse,Grove area
+gt_159,rural_low,123,Near Ayurvedic Center,Traditional Medicine,Palakkad,Palakkad,Kerala,678631,PK01-AB12-CD,47.1,VL1,10.7867,76.6548,False,Sparse,Ayurveda center
+gt_160,rural_low,45,Handloom Cooperative,Textile Zone,Kannur,Kannur,Kerala,670562,KN01-IJ90-KL,44.3,VL1,11.8745,75.3704,False,Sparse,Handloom area
+gt_161,fraud_high,789,MG Road,Business District,Mumbai,Mumbai,Maharashtra,400001,MH01-MN45-IJ,18.2,VL0,18.9388,72.8354,True,Complete,12 deliveries in 5 days - fraud pattern
+gt_162,fraud_high,456,Anna Salai,Commercial,Chennai,Chennai,Tamil Nadu,600002,TN01-RS67-MN,15.7,VL0,13.0827,80.2707,True,Complete,15 deliveries in 1 week - suspicious
+gt_163,fraud_high,321,Brigade Road,Shopping,Bangalore,Bangalore,Karnataka,560001,BN01-PQ56-KL,12.4,VL0,12.9716,77.5946,True,Complete,8 deliveries same day - fraud
+gt_164,fraud_high,654,Connaught Place,Central,New Delhi,New Delhi,Delhi,110001,DL01-CD34-GH,19.8,VL0,28.6139,77.2090,True,Complete,10 deliveries in 3 days
+gt_165,fraud_high,987,Marine Drive,Seaface,Mumbai,Mumbai,Maharashtra,400002,MH01-MN45-IJ,16.5,VL0,18.9388,72.8354,True,Complete,Multiple COD fraud attempts
+gt_166,fraud_high,123,Park Street,Commercial,Kolkata,Kolkata,West Bengal,700016,KL01-VW89-QR,14.3,VL0,22.5726,88.3639,True,Complete,Excessive velocity pattern
+gt_167,fraud_high,456,FC Road,Student Area,Pune,Pune,Maharashtra,411004,PN01-XY90-ST,17.9,VL0,18.5204,73.8567,True,Complete,11 deliveries in 6 days
+gt_168,fraud_high,789,Banjara Hills,Premium,Hyderabad,Hyderabad,Telangana,500034,HY01-TU78-OP,13.6,VL0,17.3850,78.4867,True,Complete,Fraudulent address reuse
+gt_169,fraud_high,234,MG Road,Metro,Bangalore,Bangalore,Karnataka,560001,BN01-PQ56-KL,18.7,VL0,12.9716,77.5946,True,Complete,7 deliveries in 2 days
+gt_170,fraud_high,567,Sector 18,Market,Noida,Gautam Buddha Nagar,Uttar Pradesh,201301,GN01-PQ67-GH,15.2,VL0,28.5355,77.3910,True,Complete,Velocity fraud + wrong PIN
+gt_171,fraud_high,890,DLF Phase 1,Corporate,Gurgaon,Gurgaon,Haryana,122002,GG01-AB23-CD,16.9,VL0,28.4595,77.0266,True,Complete,Multiple fake orders
+gt_172,fraud_high,345,Elgin Road,Residential,Kolkata,Kolkata,West Bengal,700020,KL01-VW89-QR,14.8,VL0,22.5726,88.3639,True,Complete,COD fraud pattern
+gt_173,fraud_high,678,Juhu,Suburb,Mumbai,Mumbai,Maharashtra,400049,MH01-MN45-IJ,17.4,VL0,18.9388,72.8354,True,Complete,9 deliveries in 4 days
+gt_174,fraud_high,901,Adyar,Residential,Chennai,Chennai,Tamil Nadu,600020,TN01-RS67-MN,15.9,VL0,13.0827,80.2707,True,Complete,Suspicious order pattern
+gt_175,fraud_high,234,Whitefield,IT Hub,Bangalore,Bangalore,Karnataka,560066,BN01-PQ56-KL,18.1,VL0,12.9716,77.5946,True,Complete,Fake company address
+gt_176,fraud_high,567,Indiranagar,Upscale,Bangalore,Bangalore,Karnataka,560038,BN01-PQ56-KL,16.7,VL0,12.9716,77.5946,True,Complete,Multiple fraud attempts
+gt_177,fraud_high,890,Vashi,Navi Mumbai,Navi Mumbai,Thane,Maharashtra,400703,NM01-TU01-KL,17.2,VL0,19.0760,72.8777,True,Complete,Velocity + PIN mismatch
+gt_178,fraud_high,123,Koramangala,Tech Hub,Bangalore,Bangalore,Karnataka,560095,BN01-PQ56-KL,15.5,VL0,12.9716,77.5946,True,Complete,8 deliveries in 1 day
+gt_179,fraud_high,456,Malad,Suburb,Mumbai,Mumbai,Maharashtra,400064,MH01-MN45-IJ,16.3,VL0,18.9388,72.8354,True,Complete,Fraudulent reuse
+gt_180,fraud_high,789,Andheri,West Mumbai,Mumbai,Mumbai,Maharashtra,400053,MH01-MN45-IJ,14.6,VL0,18.9388,72.8354,True,Complete,12 deliveries in 1 week
+gt_181,fraud_high,234,Vasant Vihar,South Delhi,New Delhi,New Delhi,Delhi,110057,DL01-CD34-GH,18.4,VL0,28.6139,77.2090,True,Complete,Multiple COD failures
+gt_182,fraud_high,567,Hauz Khas,Central Delhi,New Delhi,New Delhi,Delhi,110016,DL01-CD34-GH,17.1,VL0,28.6139,77.2090,True,Complete,Suspicious pattern
+gt_183,fraud_high,890,Lajpat Nagar,Market,New Delhi,New Delhi,Delhi,110024,DL01-CD34-GH,15.8,VL0,28.6139,77.2090,True,Complete,Fraud velocity
+gt_184,fraud_high,123,Karol Bagh,Commercial,New Delhi,New Delhi,Delhi,110005,DL01-CD34-GH,16.2,VL0,28.6139,77.2090,True,Complete,9 deliveries in 3 days
+gt_185,fraud_high,456,Rohini,North Delhi,New Delhi,New Delhi,Delhi,110085,DL01-CD34-GH,17.6,VL0,28.6139,77.2090,True,Complete,Fake address
+gt_186,fraud_high,789,Dwarka,West Delhi,New Delhi,New Delhi,Delhi,110075,DL01-CD34-GH,14.9,VL0,28.6139,77.2090,True,Complete,Velocity fraud
+gt_187,fraud_high,234,Pitampura,Suburban,New Delhi,New Delhi,Delhi,110034,DL01-CD34-GH,18.3,VL0,28.6139,77.2090,True,Complete,Multiple fraud attempts
+gt_188,fraud_high,567,Janakpuri,West Delhi,New Delhi,New Delhi,Delhi,110058,DL01-CD34-GH,16.4,VL0,28.6139,77.2090,True,Complete,COD fraud
+gt_189,fraud_high,890,Mayur Vihar,East Delhi,New Delhi,New Delhi,Delhi,110091,DL01-CD34-GH,15.1,VL0,28.6139,77.2090,True,Complete,Suspicious orders
+gt_190,fraud_high,123,Laxmi Nagar,Market,New Delhi,New Delhi,Delhi,110092,DL01-CD34-GH,17.8,VL0,28.6139,77.2090,True,Complete,Fraud pattern
+gt_191,fraud_high,456,Preet Vihar,Residential,New Delhi,New Delhi,Delhi,110092,DL01-CD34-GH,14.7,VL0,28.6139,77.2090,True,Complete,7 deliveries in 1 day
+gt_192,fraud_high,789,Vikas Puri,West Delhi,New Delhi,New Delhi,Delhi,110018,DL01-CD34-GH,16.8,VL0,28.6139,77.2090,True,Complete,Velocity + fake
+gt_193,fraud_high,234,Paschim Vihar,Suburban,New Delhi,New Delhi,Delhi,110063,DL01-CD34-GH,15.4,VL0,28.6139,77.2090,True,Complete,Multiple fraud
+gt_194,fraud_high,567,Rajouri Garden,Market,New Delhi,New Delhi,Delhi,110027,DL01-CD34-GH,18.5,VL0,28.6139,77.2090,True,Complete,Fraudulent reuse
+gt_195,fraud_high,890,Tilak Nagar,West Delhi,New Delhi,New Delhi,Delhi,110018,DL01-CD34-GH,16.1,VL0,28.6139,77.2090,True,Complete,COD fraud pattern
+gt_196,fraud_high,123,Uttam Nagar,Far West,New Delhi,New Delhi,Delhi,110059,DL01-CD34-GH,14.2,VL0,28.6139,77.2090,True,Complete,Excessive velocity
+gt_197,fraud_high,456,Naraina,Industrial,New Delhi,New Delhi,Delhi,110028,DL01-CD34-GH,17.3,VL0,28.6139,77.2090,True,Complete,Fake industrial address
+gt_198,fraud_high,789,Moti Nagar,Market,New Delhi,New Delhi,Delhi,110015,DL01-CD34-GH,15.6,VL0,28.6139,77.2090,True,Complete,10 deliveries in 4 days
+gt_199,fraud_high,234,Kirti Nagar,Commercial,New Delhi,New Delhi,Delhi,110015,DL01-CD34-GH,18.9,VL0,28.6139,77.2090,True,Complete,Suspicious pattern
+gt_200,fraud_high,567,Punjabi Bagh,Residential,New Delhi,New Delhi,Delhi,110026,DL01-CD34-GH,16.6,VL0,28.6139,77.2090,True,Complete,Multiple fraud attempts
