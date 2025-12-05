@@ -1,0 +1,51 @@
+digipin,lat,long,locality,city,district,state,pin
+AB12-CD34-EF,10.5276,76.2144,Sector 2,Thrissur,Thrissur,Kerala,680123
+AB12-CD34-FG,10.5285,76.2156,Ambedkar Nagar East,Thrissur,Thrissur,Kerala,680123
+AB12-CD34-GH,10.5295,76.2168,Medical College Road,Thrissur,Thrissur,Kerala,680123
+AB12-CD35-AB,10.5305,76.2180,Kuriachira,Thrissur,Thrissur,Kerala,680006
+AB12-CD35-BC,10.5315,76.2192,Vilangan Hills,Thrissur,Thrissur,Kerala,680006
+DL01-MN45-XY,28.7041,77.1025,Connaught Place,Delhi,Central Delhi,Delhi,110001
+DL01-MN45-YZ,28.7051,77.1035,Janpath,Delhi,Central Delhi,Delhi,110001
+DL01-MN46-AB,28.7061,77.1045,Kasturba Gandhi Marg,Delhi,Central Delhi,Delhi,110001
+DL02-OP23-CD,28.5355,77.3910,Sector 62,Noida,Gautam Buddha Nagar,Uttar Pradesh,201309
+DL02-OP23-DE,28.5365,77.3920,Sector 63,Noida,Gautam Buddha Nagar,Uttar Pradesh,201301
+MH01-QR78-EF,19.0760,72.8777,Andheri West,Mumbai,Mumbai Suburban,Maharashtra,400058
+MH01-QR78-FG,19.0770,72.8787,Juhu,Mumbai,Mumbai Suburban,Maharashtra,400049
+MH01-QR79-GH,19.0780,72.8797,Vile Parle,Mumbai,Mumbai Suburban,Maharashtra,400056
+KA01-ST12-HI,12.9716,77.5946,Koramangala,Bangalore,Bangalore Urban,Karnataka,560034
+KA01-ST12-IJ,12.9726,77.5956,HSR Layout,Bangalore,Bangalore Urban,Karnataka,560102
+KA01-ST13-JK,12.9736,77.5966,BTM Layout,Bangalore,Bangalore Urban,Karnataka,560076
+TN01-UV34-KL,13.0827,80.2707,T Nagar,Chennai,Chennai,Tamil Nadu,600017
+TN01-UV34-LM,13.0837,80.2717,Nungambakkam,Chennai,Chennai,Tamil Nadu,600034
+TS01-WX56-MN,17.3850,78.4867,Banjara Hills,Hyderabad,Hyderabad,Telangana,500034
+TS01-WX56-NO,17.3860,78.4877,Jubilee Hills,Hyderabad,Hyderabad,Telangana,500033
+KL05-YZ90-OP,8.5241,76.9366,Kovalam,Thiruvananthapuram,Thiruvananthapuram,Kerala,695527
+KL05-YZ90-PQ,8.5251,76.9376,Lighthouse Beach,Thiruvananthapuram,Thiruvananthapuram,Kerala,695527
+KL10-AB12-QR,9.9312,76.2673,Ernakulam South,Kochi,Ernakulam,Kerala,682016
+KL10-AB12-RS,9.9322,76.2683,Marine Drive,Kochi,Ernakulam,Kerala,682031
+AB13-CD45-ST,10.5326,76.2204,Chembottil Lane,Thrissur,Thrissur,Kerala,680020
+AB13-CD45-TU,10.5336,76.2214,Shornur Road,Thrissur,Thrissur,Kerala,680021
+WB01-CD67-UV,22.5726,88.3639,Park Street,Kolkata,Kolkata,West Bengal,700016
+WB01-CD67-VW,22.5736,88.3649,Camac Street,Kolkata,Kolkata,West Bengal,700017
+GJ01-EF89-WX,23.0225,72.5714,Navrangpura,Ahmedabad,Ahmedabad,Gujarat,380009
+GJ01-EF89-XY,23.0235,72.5724,Paldi,Ahmedabad,Ahmedabad,Gujarat,380007
+RJ01-GH23-YZ,26.9124,75.7873,MI Road,Jaipur,Jaipur,Rajasthan,302001
+RJ01-GH23-ZA,26.9134,75.7883,Civil Lines,Jaipur,Jaipur,Rajasthan,302006
+UP01-IJ45-AB,25.3176,82.9739,Cantonment,Varanasi,Varanasi,Uttar Pradesh,221002
+UP01-IJ45-BC,25.3186,82.9749,Lanka,Varanasi,Varanasi,Uttar Pradesh,221005
+PB01-KL67-CD,30.7333,76.7794,Sector 17,Chandigarh,Chandigarh,Chandigarh,160017
+PB01-KL67-DE,30.7343,76.7804,Sector 22,Chandigarh,Chandigarh,Chandigarh,160022
+HR01-MN89-EF,28.4595,77.0266,Cyber City,Gurugram,Gurugram,Haryana,122002
+HR01-MN89-FG,28.4605,77.0276,DLF Phase 1,Gurugram,Gurugram,Haryana,122002
+MH02-OP12-GH,18.5204,73.8567,Koregaon Park,Pune,Pune,Maharashtra,411001
+MH02-OP12-HI,18.5214,73.8577,Viman Nagar,Pune,Pune,Maharashtra,411014
+KA02-QR34-IJ,15.3647,75.1240,Gandhinagar,Hubli,Dharwad,Karnataka,580020
+KA02-QR34-JK,15.3657,75.1250,Unkal,Hubli,Dharwad,Karnataka,580031
+TN02-ST56-KL,11.0168,76.9558,RS Puram,Coimbatore,Coimbatore,Tamil Nadu,641002
+TN02-ST56-LM,11.0178,76.9568,Gandhipuram,Coimbatore,Coimbatore,Tamil Nadu,641012
+KL08-UV78-MN,11.2588,75.7804,Mavoor Road,Kozhikode,Kozhikode,Kerala,673004
+KL08-UV78-NO,11.2598,75.7814,Medical College,Kozhikode,Kozhikode,Kerala,673008
+OR01-WX90-OP,20.2961,85.8245,Bapuji Nagar,Bhubaneswar,Khordha,Odisha,751009
+OR01-WX90-PQ,20.2971,85.8255,Sahid Nagar,Bhubaneswar,Khordha,Odisha,751007
+AS01-YZ12-QR,26.1445,91.7362,Fancy Bazaar,Guwahati,Kamrup Metropolitan,Assam,781001
+AS01-YZ12-RS,26.1455,91.7372,Paltan Bazaar,Guwahati,Kamrup Metropolitan,Assam,781008

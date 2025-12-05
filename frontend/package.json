@@ -1,0 +1,11 @@
+{
+  "name": "digitrust-avp-frontend",
+  "version": "1.0.0",
+  "description": "Address Validation Platform Frontend - Vanilla JS",
+  "scripts": {
+    "serve": "python -m http.server 3000",
+    "dev": "live-server --port=3000"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

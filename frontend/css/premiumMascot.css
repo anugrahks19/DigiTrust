@@ -1,0 +1,198 @@
+/* ========================================
+   Premium 3D Mascot Styles
+   ======================================== */
+
+.premium-mascot-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-mascot-svg {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+    /* Floating Animation */
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Smooth Transitions for Interactive Elements */
+.pupil-left,
+.pupil-right {
+    /* Smoother physics-based transition */
+    transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mascot-face-group {
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mascot-body-group {
+    transition: transform 0.3s ease-out;
+}
+
+.mascot-hands {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy hands */
+}
+
+.mascot-mouth {
+    transition: d 0.3s ease;
+}
+
+/* Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.shake-anim {
+    animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translate3d(-2px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(4px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-8px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(8px, 0, 0);
+    }
+}
+
+.jump-anim {
+    animation: jump 0.6s ease-in-out;
+}
+
+@keyframes jump {
+    0% {
+        transform: scale(1) translateY(0);
+    }
+
+    40% {
+        transform: scale(0.9) translateY(10px);
+    }
+
+    /* Anticipation */
+    50% {
+        transform: scale(1.1) translateY(-50px);
+    }
+
+    /* Jump */
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Back Button */
+.login-back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px;
+    height: 42px;
+}
+
+.login-back-btn:hover {
+    color: #3f2b96;
+}
+
+/* Floating Background Orbs */
+.mascot-bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    /* Much more translucent */
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(30px);
+    /* Soften edges significantly */
+    animation: floatOrb 10s infinite ease-in-out;
+}
+
+.orb-1 {
+    width: 200px;
+    /* Slightly smaller */
+    height: 200px;
+    background: radial-gradient(circle, #fff, #a8c0ff);
+    top: -60px;
+    left: -60px;
+    animation-duration: 14s;
+}
+
+.orb-2 {
+    width: 140px;
+    /* Slightly smaller */
+    height: 140px;
+    background: radial-gradient(circle, #fff, #ff99cc);
+    bottom: 30px;
+    right: -40px;
+    animation-duration: 9s;
+    animation-delay: 1s;
+}
+
+.orb-3 {
+    width: 70px;
+    /* Slightly smaller */
+    height: 70px;
+    background: radial-gradient(circle, #fff, #3f2b96);
+    top: 40%;
+    left: 15%;
+    animation-duration: 18s;
+    animation-delay: 3s;
+}
+
+@keyframes floatOrb {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(20px, -20px);
+    }
+}
