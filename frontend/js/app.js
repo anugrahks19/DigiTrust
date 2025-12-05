@@ -79,6 +79,10 @@ function switchView(viewName) {
         if (window.loadAgentDashboards) {
             loadAgentDashboards();
         }
+        // Create logout button for agents
+        if (adminAuth) {
+            adminAuth.createAgentLogoutButton(viewName + 'View');
+        }
     }
 }
 
@@ -146,7 +150,13 @@ async function apiRequest(endpoint, method = 'GET', data = null) {
         return responseData;
     } catch (error) {
         console.error('API Error:', error);
-        showNotification('Error: ' + error.message, 'error');
+
+        // Check for Mixed Content / Network Error
+        if (error.message === 'Failed to fetch' && window.location.protocol === 'https:' && API_BASE_URL.startsWith('http:')) {
+            showNotification('⚠️ Security Block: Please allow "Insecure Content" in browser settings to connect to Localhost.', 'error');
+        } else {
+            showNotification('Error: ' + error.message, 'error');
+        }
         throw error;
     }
 }
@@ -161,8 +171,9 @@ function showNotification(message, type = 'info') {
     notification.className = `notification notification-${type}`;
     notification.style.cssText = `
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: var(--spacing-md) var(--spacing-lg);
         background: var(--glass-bg);
         backdrop-filter: blur(20px);
@@ -170,8 +181,10 @@ function showNotification(message, type = 'info') {
         border-radius: var(--radius-md);
         box-shadow: var(--shadow-lg);
         z-index: 3000;
-        max-width: 400px;
-        animation: slideInRight var(--transition-base);
+        max-width: 500px;
+        min-width: 320px;
+        text-align: center;
+        animation: slideInTop var(--transition-base);
     `;
 
     notification.innerHTML = `
@@ -181,34 +194,34 @@ function showNotification(message, type = 'info') {
 
     document.body.appendChild(notification);
 
-    // Auto remove after 5 seconds
+    // Auto remove after 8 seconds
     setTimeout(() => {
-        notification.style.animation = 'slideOutRight var(--transition-base)';
+        notification.style.animation = 'slideOutTop var(--transition-base)';
         setTimeout(() => notification.remove(), 250);
-    }, 5000);
+    }, 8000);
 }
 
 // Add CSS for notification animations
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes slideInRight {
+    @keyframes slideInTop {
         from {
-            transform: translateX(400px);
+            transform: translate(-50%, -100px);
             opacity: 0;
         }
         to {
-            transform: translateX(0);
+            transform: translate(-50%, 0);
             opacity: 1;
         }
     }
     
-    @keyframes slideOutRight {
+    @keyframes slideOutTop {
         from {
-            transform: translateX(0);
+            transform: translate(-50%, 0);
             opacity: 1;
         }
         to {
-            transform: translateX(400px);
+            transform: translate(-50%, -100px);
             opacity: 0;
         }
     }
@@ -259,9 +272,16 @@ console.log('🔗 API Base URL:', API_BASE_URL);
 console.log('👤 Current User:', appState.currentUser);
 
 // Simulate Agent Actions (Postman/Delivery)
-function simulateAgentAction(role, id) {
+function simulateAgentAction(role, id, btnElement) {
     // Show processing
     showNotification('📡 Sending verification signal...', 'info');
+
+    // If button is passed, show loading state immediately
+    if (btnElement) {
+        const originalText = btnElement.innerHTML;
+        btnElement.disabled = true;
+        btnElement.innerHTML = '<span class="spinner" style="width: 16px; height: 16px; border-width: 2px;"></span> Processing...';
+    }
 
     setTimeout(() => {
         // Store signal in localStorage for Admin to see (ID-specific)
@@ -282,12 +302,11 @@ function simulateAgentAction(role, id) {
         }
 
         // Update button UI
-        const btn = event.target;
-        if (btn) {
-            btn.disabled = true;
-            btn.innerHTML = role === 'postman' ? '✅ Verified' : '✅ Delivered';
-            btn.classList.remove('btn-primary');
-            btn.classList.add('btn-outline');
+        if (btnElement) {
+            btnElement.disabled = true;
+            btnElement.innerHTML = role === 'postman' ? '✅ Verified' : '✅ Delivered';
+            btnElement.classList.remove('btn-primary');
+            btnElement.classList.add('btn-outline');
         }
 
     }, 1500);
