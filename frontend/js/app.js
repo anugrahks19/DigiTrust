@@ -2,7 +2,7 @@
 // App Configuration & State Management
 // ====================================
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'https://digitrust.onrender.com';
 
 // Global App State
 const appState = {
