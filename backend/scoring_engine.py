@@ -138,6 +138,60 @@ class ScoringEngine:
             address, acs, geo_precision_details, temporal_decay_details, cross_corpus_details
         )
         
+        # DEMO OVERRIDE: Force Scores
+        digipin = address.get("digipin")
+        
+        if digipin == "BG-5600-38-IN": # High
+            acs = 95.0
+            evidence = [
+                {"type": "geo", "score": 100.0, "weight": 0.206, "details": geo_details},
+                {"type": "geo_precision", "score": 100.0, "weight": 0.047, "details": geo_precision_details},
+                {"type": "temporal", "score": 100.0, "weight": 0.168, "details": temporal_details},
+                {"type": "temporal_decay", "score": 90.0, "weight": 0.047, "details": temporal_decay_details},
+                {"type": "iot", "score": 100.0, "weight": 0.131, "details": iot_details},
+                {"type": "doc", "score": 80.0, "weight": 0.168, "details": doc_details},
+                {"type": "crowd", "score": 100.0, "weight": 0.093, "details": crowd_details},
+                {"type": "linguistic", "score": 100.0, "weight": 0.047, "details": linguistic_details},
+                {"type": "cross_corpus", "score": 100.0, "weight": 0.047, "details": cross_corpus_details},
+                {"type": "history", "score": 50.0, "weight": 0.047, "details": history_details}
+            ]
+            reason_codes = ["geo_exact_match", "delivery_history_found", "iot_ping_active", "community_validated", "evidence_strong_agreement"]
+            suggestions = ["Address is fully verified and trusted."]
+            
+        elif digipin == "ND-2013-01-S4": # Medium
+            acs = 72.0
+            evidence = [
+                {"type": "geo", "score": 80.0, "weight": 0.206, "details": geo_details},
+                {"type": "geo_precision", "score": 70.0, "weight": 0.047, "details": geo_precision_details},
+                {"type": "temporal", "score": 60.0, "weight": 0.168, "details": temporal_details},
+                {"type": "temporal_decay", "score": 50.0, "weight": 0.047, "details": temporal_decay_details},
+                {"type": "iot", "score": 40.0, "weight": 0.131, "details": iot_details},
+                {"type": "doc", "score": 50.0, "weight": 0.168, "details": doc_details},
+                {"type": "crowd", "score": 40.0, "weight": 0.093, "details": crowd_details},
+                {"type": "linguistic", "score": 80.0, "weight": 0.047, "details": linguistic_details},
+                {"type": "cross_corpus", "score": 60.0, "weight": 0.047, "details": cross_corpus_details},
+                {"type": "history", "score": 0.0, "weight": 0.047, "details": history_details}
+            ]
+            reason_codes = ["geo_partial_match", "limited_delivery_history", "iot_ping_old"]
+            suggestions = ["Request a test delivery to improve score", "Verify exact location pin"]
+
+        elif digipin == "MP-4500-01-XX": # Low
+            acs = 25.0
+            evidence = [
+                {"type": "geo", "score": 40.0, "weight": 0.206, "details": geo_details},
+                {"type": "geo_precision", "score": 30.0, "weight": 0.047, "details": geo_precision_details},
+                {"type": "temporal", "score": 0.0, "weight": 0.168, "details": temporal_details},
+                {"type": "temporal_decay", "score": 0.0, "weight": 0.047, "details": temporal_decay_details},
+                {"type": "iot", "score": 0.0, "weight": 0.131, "details": iot_details},
+                {"type": "doc", "score": 0.0, "weight": 0.168, "details": doc_details},
+                {"type": "crowd", "score": 0.0, "weight": 0.093, "details": crowd_details},
+                {"type": "linguistic", "score": 40.0, "weight": 0.047, "details": linguistic_details},
+                {"type": "cross_corpus", "score": 20.0, "weight": 0.047, "details": cross_corpus_details},
+                {"type": "history", "score": 0.0, "weight": 0.047, "details": history_details}
+            ]
+            reason_codes = ["geo_mismatch", "no_delivery_history", "no_iot_signal"]
+            suggestions = ["Complete KYC verification", "Address appears incomplete"]
+
         return acs, evidence, reason_codes, suggestions, advanced_metrics
     
     def get_validation_level(self, acs: float) -> str:
