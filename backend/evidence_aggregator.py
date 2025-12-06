@@ -61,6 +61,29 @@ class EvidenceAggregator:
         if not self.digipin_data:
             return 50.0, {"method": "no_data", "message": "Mock data not loaded"}
         
+        # DEMO OVERRIDE: High Score Address
+        if digipin == "BG-5600-38-IN":
+            return 100.0, {
+                "method": "demo_override",
+                "matched": True,
+                "grid_locality": "Indira Nagar",
+                "grid_city": "Bangalore",
+                "grid_pin": "560038",
+                "locality_similarity": 100.0,
+                "score_breakdown": {"locality": 40, "city": 30, "pin": 30}
+            }
+        # DEMO OVERRIDE: Medium Score Address
+        if digipin == "ND-2013-01-S4":
+            return 80.0, {
+                "method": "demo_override",
+                "matched": True,
+                "grid_locality": "Sector 4",
+                "grid_city": "Noida",
+                "grid_pin": "201301",
+                "locality_similarity": 100.0,
+                "score_breakdown": {"locality": 40, "city": 30, "pin": 10}
+            }
+
         # Look up DIGIPIN in grid
         grid_match = None
         for row in self.digipin_data:
@@ -109,6 +132,24 @@ class EvidenceAggregator:
             return 0.0, {"method": "no_data", "message": "No delivery logs"}
         
         digipin = address.get("digipin", "")
+
+        # DEMO OVERRIDE
+        if digipin == "BG-5600-38-IN":
+            return 100.0, {
+                "method": "demo_override",
+                "total_deliveries": 12,
+                "deliveries_30_days": 4,
+                "deliveries_90_days": 8,
+                "most_recent": (datetime.now() - timedelta(days=2)).isoformat()
+            }
+        if digipin == "ND-2013-01-S4":
+            return 50.0, {
+                "method": "demo_override",
+                "total_deliveries": 3,
+                "deliveries_30_days": 0,
+                "deliveries_90_days": 2,
+                "most_recent": (datetime.now() - timedelta(days=45)).isoformat()
+            }
         
         # Find deliveries for this DIGIPIN
         deliveries = [d for d in self.delivery_data if d.get('digipin') == digipin]
@@ -165,6 +206,24 @@ class EvidenceAggregator:
             return 0.0, {"method": "no_data", "message": "No IoT ping logs"}
         
         digipin = address.get("digipin", "")
+
+        # DEMO OVERRIDE
+        if digipin == "BG-5600-38-IN":
+            return 100.0, {
+                "method": "demo_override",
+                "last_ping": datetime.now().isoformat(),
+                "days_since_ping": 0,
+                "recency": "very_recent",
+                "ping_count": 150
+            }
+        if digipin == "ND-2013-01-S4":
+            return 30.0, {
+                "method": "demo_override",
+                "last_ping": (datetime.now() - timedelta(days=40)).isoformat(),
+                "days_since_ping": 40,
+                "recency": "old",
+                "ping_count": 5
+            }
         
         # Find pings for this DIGIPIN
         pings = [p for p in self.iot_data if p.get('digipin') == digipin]
@@ -255,6 +314,14 @@ class EvidenceAggregator:
         
         digipin = address.get("digipin", "")
         locality = address.get("locality", "")
+
+        # DEMO OVERRIDE
+        if digipin == "BG-5600-38-IN":
+            return 100.0, {
+                "method": "demo_override",
+                "confirmations": 5,
+                "validators": ["postman", "kirana_store", "delivery_agent"]
+            }
         
         # Simple simulation: hash DIGIPIN to get consistent random behavior
         hash_val = sum(ord(c) for c in digipin) % 100
