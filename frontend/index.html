@@ -195,48 +195,69 @@
                 <div class="guide-grid">
                     <!-- Step 1 -->
                     <div class="glass" style="padding: 2rem; border-radius: 1rem;">
-                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">📝</div>
-                        <h3>1. Enter Address Details</h3>
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-                            Fill in the address form manually or use the <strong>Pick from Map</strong> feature to
-                            auto-fill location details.
-                            You can also click on the <strong>Demo Cards</strong> (High/Medium/Low) for a quick test.
+                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">1️⃣</div>
+                        <h3>Fill Address Form</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.6;">
+                            Start by entering your address manually or use the <strong
+                                style="color: var(--accent);">"Pick from Map"</strong> button to auto-detect your
+                            location.
+                            <br><br>
+                            <em>New to the app?</em> Click one of the <strong style="color: var(--white);">Demo
+                                Cards</strong> (High/Medium/Low) on the home page to instantly populate a test address
+                            and see how it works!
                         </p>
                     </div>
 
                     <!-- Step 2 -->
                     <div class="glass" style="padding: 2rem; border-radius: 1rem;">
-                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">⚙️</div>
-                        <h3>2. AI Validation</h3>
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-                            Our system cross-references your address with satellite data, delivery logs, and utility
-                            records.
-                            This process takes a few seconds to ensure accuracy.
+                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">2️⃣</div>
+                        <h3>Run AI Validation</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.6;">
+                            Hit the <strong style="color: var(--primary);">Validate Address</strong> button.
+                            Our AI engine will scan multiple data sources in real-time:
                         </p>
+                        <ul
+                            style="color: var(--text-secondary); margin-top: 0.5rem; padding-left: 1.2rem; line-height: 1.5;">
+                            <li>🛰️ Satellite Imagery Check</li>
+                            <li>📦 Postal & Delivery Logs</li>
+                            <li>📡 IoT Signal Strength</li>
+                            <li>🏘️ Neighborhood Pattern Match</li>
+                        </ul>
                     </div>
 
                     <!-- Step 3 -->
                     <div class="glass" style="padding: 2rem; border-radius: 1rem;">
-                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
-                        <h3>3. Understanding Scores</h3>
-                        <ul style="color: var(--text-secondary); margin-top: 0.5rem; list-style: none; padding: 0;">
-                            <li style="margin-bottom: 0.5rem;">🟢 <strong>VL3 (High Confidence):</strong> Validated by
-                                multiple sources. Safe for KYC.</li>
-                            <li style="margin-bottom: 0.5rem;">🟡 <strong>VL2 (Medium Confidence):</strong> Likely
-                                correct but needs more evidence.</li>
-                            <li>🔴 <strong>VL0/VL1 (Low Confidence):</strong> Address looks incomplete or unverifiable.
-                            </li>
-                        </ul>
+                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">3️⃣</div>
+                        <h3>Check Your Score</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.6;">
+                            You will receive a <strong>Confidence Score (ACS)</strong> from 0-100.
+                        </p>
+                        <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                            <div
+                                style="background: rgba(34, 197, 94, 0.1); padding: 0.5rem; border-radius: 0.5rem; border-left: 3px solid #22c55e;">
+                                <strong style="color: #22c55e;">VL3 (High)</strong>: Verified & Trusted.
+                            </div>
+                            <div
+                                style="background: rgba(234, 179, 8, 0.1); padding: 0.5rem; border-radius: 0.5rem; border-left: 3px solid #eab308;">
+                                <strong style="color: #eab308;">VL2 (Medium)</strong>: Likely valid, needs check.
+                            </div>
+                            <div
+                                style="background: rgba(239, 68, 68, 0.1); padding: 0.5rem; border-radius: 0.5rem; border-left: 3px solid #ef4444;">
+                                <strong style="color: #ef4444;">VL0 (Low)</strong>: Unverifiable address.
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Step 4 -->
                     <div class="glass" style="padding: 2rem; border-radius: 1rem;">
-                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">🎫</div>
-                        <h3>4. Get Your Token</h3>
-                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
-                            If your address scores <strong>65 or higher</strong> (High Confidence), you can download a
-                            <strong>Validation Token</strong>. This token can be used as digital proof of address for
-                            services.
+                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">4️⃣</div>
+                        <h3>Get Validation Token</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.6;">
+                            If your address achieves a <strong>High Confidence (VL3)</strong> score, a special <strong
+                                style="color: var(--accent);">"Token"</strong> button will appear.
+                            <br><br>
+                            Click it to generate a cryptographic proof of your address, which you can use for instant
+                            KYC verification or delivery instructions.
                         </p>
                     </div>
                 </div>
