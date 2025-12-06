@@ -39,6 +39,7 @@
             <div class="nav-menu">
                 <a href="#" class="nav-link active" data-view="submit">Validate Address</a>
                 <a href="#" class="nav-link" data-view="history">History</a>
+                <a href="#" class="nav-link" data-view="guide">Guide</a>
                 <a href="#" class="nav-link admin-link" data-view="admin">Admin</a>
             </div>
             <div class="theme-toggle" id="themeToggle">
@@ -166,6 +167,85 @@
                 <h1 class="page-title">Validation History</h1>
                 <div id="historyContainer" class="history-list">
                     <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+        <!-- Guide View -->
+        <div id="guideView" class="view">
+            <div class="container">
+                <div class="hero-section" style="padding: 2rem 0; text-align: center;">
+                    <h1 class="hero-title">How to Use <span class="gradient-text">DigiTrust-AVP</span></h1>
+                    <p class="hero-subtitle">A simple guide to validating addresses and generating trust tokens</p>
+                </div>
+
+                <style>
+                    .guide-grid {
+                        display: grid;
+                        gap: 2rem;
+                        grid-template-columns: 1fr;
+                    }
+
+                    @media (min-width: 768px) {
+                        .guide-grid {
+                            grid-template-columns: repeat(2, 1fr);
+                        }
+                    }
+                </style>
+
+                <div class="guide-grid">
+                    <!-- Step 1 -->
+                    <div class="glass" style="padding: 2rem; border-radius: 1rem;">
+                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">📝</div>
+                        <h3>1. Enter Address Details</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                            Fill in the address form manually or use the <strong>Pick from Map</strong> feature to
+                            auto-fill location details.
+                            You can also click on the <strong>Demo Cards</strong> (High/Medium/Low) for a quick test.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="glass" style="padding: 2rem; border-radius: 1rem;">
+                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">⚙️</div>
+                        <h3>2. AI Validation</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                            Our system cross-references your address with satellite data, delivery logs, and utility
+                            records.
+                            This process takes a few seconds to ensure accuracy.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="glass" style="padding: 2rem; border-radius: 1rem;">
+                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
+                        <h3>3. Understanding Scores</h3>
+                        <ul style="color: var(--text-secondary); margin-top: 0.5rem; list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem;">🟢 <strong>VL3 (High Confidence):</strong> Validated by
+                                multiple sources. Safe for KYC.</li>
+                            <li style="margin-bottom: 0.5rem;">🟡 <strong>VL2 (Medium Confidence):</strong> Likely
+                                correct but needs more evidence.</li>
+                            <li>🔴 <strong>VL0/VL1 (Low Confidence):</strong> Address looks incomplete or unverifiable.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="glass" style="padding: 2rem; border-radius: 1rem;">
+                        <div class="step-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">🎫</div>
+                        <h3>4. Get Your Token</h3>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                            If your address scores <strong>65 or higher</strong> (High Confidence), you can download a
+                            <strong>Validation Token</strong>. This token can be used as digital proof of address for
+                            services.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="glass" style="margin-top: 2rem; padding: 2rem; border-radius: 1rem; text-align: center;">
+                    <h3>Ready to get started?</h3>
+                    <button class="btn btn-primary btn-lg" style="margin-top: 1rem;" onclick="switchView('submit')">
+                        Validate Now
+                    </button>
                 </div>
             </div>
         </div>

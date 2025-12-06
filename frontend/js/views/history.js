@@ -66,7 +66,12 @@ async function loadUserHistory() {
             `;
         }).join('');
 
-        container.innerHTML = html;
+        container.innerHTML = `
+            <div class="info-note glass">
+                <p>ℹ️ <strong>Note:</strong> Validation Tokens are only generated for addresses with <strong>High Confidence</strong> (Score 65+).</p>
+            </div>
+            ${html}
+        `;
 
     } catch (error) {
         container.innerHTML = `
@@ -221,6 +226,16 @@ historyStyles.textContent = `
     
     @keyframes spin {
         to { transform: rotate(360deg); }
+    }
+
+    .info-note {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+        border-radius: var(--radius-md);
+        border-left: 4px solid var(--primary);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
     }
 `;
 document.head.appendChild(historyStyles);
