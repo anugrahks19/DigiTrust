@@ -2,7 +2,7 @@
 // App Configuration & State Management
 // ====================================
 
-const API_BASE_URL = 'https://digitrust1.onrender.com/';
+const API_BASE_URL = 'https://digitrust1.onrender.com';
 
 // Global App State
 const appState = {
@@ -140,11 +140,18 @@ async function apiRequest(endpoint, method = 'GET', data = null) {
     }
 
     try {
-        const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+        // Ensure proper URL construction (avoid double slashes)
+        const baseUrl = API_BASE_URL.replace(/\/$/, '');
+        const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+        const finalUrl = `${baseUrl}${path}`;
+
+        console.log(`📡 Fetching: ${finalUrl}`); // Debug log
+
+        const response = await fetch(finalUrl, options);
         const responseData = await response.json();
 
         if (!response.ok) {
-            throw new Error(responseData.detail || 'API request failed');
+            throw new Error(responseData.detail || `API Request failed with status ${response.status}`);
         }
 
         return responseData;
