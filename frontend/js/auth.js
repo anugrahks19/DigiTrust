@@ -1,14 +1,26 @@
 class AuthManager {
     constructor() {
-        // 0. Check for Token Handoff from Login 2 (URL Params)
+        // 0. Check for Token Handoff from Login (URL Params)
         const urlParams = new URLSearchParams(window.location.search);
-        const urlToken = urlParams.get('token');
-        const urlUser = urlParams.get('user');
+
+        // Support both 'token' (legacy) and 'social_token' (OAuth)
+        const urlToken = urlParams.get('token') || urlParams.get('social_token');
+
+        // Support 'user' (legacy encoded) or direct fields
+        let urlUserObj = null;
+        if (urlParams.get('user')) {
+            try { urlUserObj = JSON.parse(decodeURIComponent(urlParams.get('user'))); } catch (e) { }
+        } else if (urlParams.get('user_id')) {
+            urlUserObj = {
+                id: urlParams.get('user_id'),
+                name: urlParams.get('user_name') || 'User'
+            };
+        }
 
         if (urlToken) {
             localStorage.setItem('auth_token', urlToken);
-            if (urlUser) {
-                localStorage.setItem('auth_user', decodeURIComponent(urlUser));
+            if (urlUserObj) {
+                localStorage.setItem('auth_user', JSON.stringify(urlUserObj));
             }
             // Clean URL
             window.history.replaceState({}, document.title, window.location.pathname);
