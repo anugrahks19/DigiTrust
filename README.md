@@ -37,7 +37,25 @@ pip install -r requirements.txt
 # Configure Environment
 # Copy the example env file and add your API keys (Required for Social Login)
 cp .env.example .env
-# Edit .env and add GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, etc.
+
+# ⚠️ CRITICAL: OAuth Callback Configuration
+
+## For Local Development (What you are doing now)
+You must search for "Callback URL" or "Redirects" in your Developer Dashboard.
+
+**GitHub**:
+*   GitHub only allows **ONE** callback URL.
+*   Set it to: `http://localhost:8000/api/auth/callback/github`
+*   *(When you go live/production, you will need to change this to the Vercel/Render URL)*
+
+**Discord**:
+*   Discord allows multiple redirects. Add BOTH:
+    1. `http://localhost:8000/api/auth/callback/discord`
+    2. `https://digitrust1.onrender.com/api/auth/callback/discord`
+
+## For Production (When using Vercel/Render)
+- Switch the GitHub URL to: `https://digitrust1.onrender.com/api/auth/callback/github`
+- Ensure the Discord production URL is in the list.
 
 # Initialize database and start server
 python main.py
