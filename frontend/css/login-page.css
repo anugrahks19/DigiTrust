@@ -295,7 +295,8 @@ form {
 
 .subtitle {
     font-size: 14px;
-    color: #6b7280;
+    color: #333333;
+    /* Darker text */
     margin-bottom: 25px;
     margin-top: 10px;
 }
@@ -612,7 +613,8 @@ form {
 .google-btn:hover {
     border-color: var(--primary);
     background: #fff;
-    box-shadow: 0 0 20px rgba(79, 70, 229, 0.5); /* Glowing effect */
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+    /* Glowing effect */
     transform: translateY(-2px);
     color: var(--primary);
 }
