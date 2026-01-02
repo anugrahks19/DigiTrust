@@ -8,4 +8,5 @@ python-dotenv
 numpy
 scipy
 scikit-learn
+requests
 
