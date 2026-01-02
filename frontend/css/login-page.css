@@ -295,7 +295,8 @@ form {
 
 .subtitle {
     font-size: 14px;
-    color: #333333;
+    color: #4b5563;
+    /* Softer dark gray */
     /* Darker text */
     margin-bottom: 25px;
     margin-top: 10px;
@@ -400,8 +401,8 @@ form {
 
 .divider span {
     padding: 0 10px;
-    color: #6b7280;
-    /* Slightly darker */
+    color: #9ca3af;
+    /* Revert to lighter gray but keep bold */
     font-size: 12px;
     background: #fff;
     font-weight: 600;
