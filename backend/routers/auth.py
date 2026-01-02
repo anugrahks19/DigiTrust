@@ -249,8 +249,10 @@ def login_github():
     client_id = os.getenv("GITHUB_CLIENT_ID")
     print(f"👉 GitHub Client ID: {client_id}")
     if not client_id:
-        return {"error": "Missing GITHUB_CLIENT_ID"}
-    return {"url": f"https://github.com/login/oauth/authorize?client_id={client_id}&scope=user:email"}
+        return {"error": "Missing GITHUB_CLIENT_ID on server"}
+    
+    redirect_uri = f"{BACKEND_URL}/api/auth/callback/github"
+    return {"url": f"https://github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&scope=user:email"}
 
 @router.get("/callback/github")
 async def callback_github(code: str, db: Session = Depends(get_db)):
@@ -263,7 +265,8 @@ async def callback_github(code: str, db: Session = Depends(get_db)):
         token_res = requests.post("https://github.com/login/oauth/access_token", headers={"Accept": "application/json"}, data={
             "client_id": client_id,
             "client_secret": client_secret,
-            "code": code
+            "code": code,
+            "redirect_uri": f"{BACKEND_URL}/api/auth/callback/github"
         })
         token_data = token_res.json()
         access_token = token_data.get("access_token")
@@ -283,7 +286,7 @@ async def callback_github(code: str, db: Session = Depends(get_db)):
         # Check if user exists, else create
         user = db.query(User).filter(User.id == email).first()
         if not user:
-            user = User(id=email, name=name, password_hash=get_password_hash("social_login_dummy"))
+            user = User(id=email, name=name, password_hash=get_password_hash("social123"))
             db.add(user)
             db.commit()
             db.refresh(user)
@@ -308,6 +311,9 @@ async def callback_github(code: str, db: Session = Depends(get_db)):
 @router.get("/login/discord")
 def login_discord():
     client_id = os.getenv("DISCORD_CLIENT_ID")
+    if not client_id:
+        return {"error": "Missing DISCORD_CLIENT_ID on server"}
+
     redirect_uri = f"{BACKEND_URL}/api/auth/callback/discord"
     return {"url": f"https://discord.com/api/oauth2/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&scope=identify%20email"}
 
@@ -388,7 +394,7 @@ async def callback_discord(code: str, db: Session = Depends(get_db)):
         # Store/Update User
         user = db.query(User).filter(User.id == email).first()
         if not user:
-            user = User(id=email, name=name, password_hash=get_password_hash("social_login_dummy"))
+            user = User(id=email, name=name, password_hash=get_password_hash("social123"))
             db.add(user)
             db.commit()
             db.refresh(user)
