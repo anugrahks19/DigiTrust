@@ -3,6 +3,33 @@
     --primary: hsl(240, 85%, 60%);
     --secondary: hsl(280, 75%, 65%);
     --gradient: linear-gradient(135deg, hsl(240, 85%, 60%) 0%, hsl(280, 75%, 65%) 100%);
+
+    /* Light Mode Defaults */
+    --bg-body: #f3f4f6;
+    --bg-card: #FFFFFF;
+    --bg-input: #f9fafb;
+    --text-primary: #333333;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --border-color: #e5e7eb;
+    --shadow-color: rgba(0, 0, 0, 0.25);
+    --input-icon: #a0a5b8;
+    --google-btn-bg: #fff;
+    --google-btn-text: #374151;
+}
+
+[data-theme="dark"] {
+    --bg-body: #111827;
+    --bg-card: #1f2937;
+    --bg-input: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border-color: #4b5563;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --input-icon: #9ca3af;
+    --google-btn-bg: #2d3748;
+    --google-btn-text: #f3f4f6;
 }
 
 * {
@@ -10,7 +37,7 @@
 }
 
 body {
-    background: #f3f4f6;
+    background: var(--bg-body);
     /* Login 3 Base Color */
     display: flex;
     justify-content: center;
@@ -173,8 +200,8 @@ body {
 
 h1 {
     font-weight: 800;
-    /* Bolder like frontend */
     margin: 0;
+    color: var(--text-primary);
     font-family: 'Outfit', sans-serif;
     /* Match headings */
 }
@@ -196,7 +223,7 @@ span {
 }
 
 a {
-    color: #333;
+    color: var(--text-primary);
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0;
@@ -250,7 +277,7 @@ button.ghost:hover {
 }
 
 form {
-    background-color: #FFFFFF;
+    background-color: var(--bg-card);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -295,8 +322,7 @@ form {
 
 .subtitle {
     font-size: 14px;
-    color: #6b7280;
-    /* Lighter gray */
+    color: var(--text-secondary);
     margin-bottom: 25px;
     margin-top: 10px;
     font-weight: 600;
@@ -316,7 +342,7 @@ form {
     /* Default: Left side */
     top: 50%;
     transform: translateY(-50%);
-    color: #a0a5b8;
+    color: var(--input-icon);
     transition: color 0.3s ease;
     font-size: 14px;
     z-index: 1;
@@ -332,7 +358,7 @@ form {
 }
 
 .input-group input {
-    background-color: #f9fafb;
+    background-color: var(--bg-input);
     border: 2px solid transparent;
     padding: 12px 15px 12px 40px;
     /* Space for icon */
@@ -345,7 +371,7 @@ form {
 }
 
 .input-group input:focus {
-    background-color: #fff;
+    background-color: var(--bg-card);
     border-color: var(--primary);
     outline: none;
     box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
@@ -400,16 +426,16 @@ form {
 
 .divider span {
     padding: 0 10px;
-    color: #9ca3af;
+    color: var(--text-muted);
     /* Revert to lighter gray but keep bold */
     font-size: 12px;
-    background: #fff;
+    background: var(--bg-card);
     font-weight: 600;
     /* Bolder */
 }
 
 .container {
-    background-color: #fff;
+    background-color: var(--bg-card);
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);
@@ -604,10 +630,10 @@ form {
     gap: 10px;
     width: 100%;
     padding: 12px;
-    background: #fff;
-    border: 2px solid #e5e7eb;
+    background: var(--google-btn-bg);
+    border: 2px solid var(--border-color);
     border-radius: 12px;
-    color: #374151;
+    color: var(--google-btn-text);
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -617,7 +643,7 @@ form {
 
 .google-btn:hover {
     border-color: var(--primary);
-    background: #fff;
+    background: var(--bg-card);
     box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
     /* Glowing effect */
     transform: translateY(-2px);
