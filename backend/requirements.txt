@@ -9,4 +9,5 @@ numpy
 scipy
 scikit-learn
 requests
+python-jose[cryptography]
 
