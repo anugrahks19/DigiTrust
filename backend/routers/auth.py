@@ -22,6 +22,10 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
+# Dynamic URLs (Fallback to Local defaults if Env Vars missing)
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3002") 
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+
 class LoginRequest(BaseModel):
     email: str
     password: str
@@ -180,7 +184,8 @@ async def forgot_password(request: ForgotPasswordRequest, db: Session = Depends(
     # 3. Generate Token & Link
     reset_token = str(uuid.uuid4())
     # Link points to static HTML file
-    reset_link = f"http://localhost:3000/reset-password.html?token={reset_token}&email={email}"
+    # Link points to static HTML file
+    reset_link = f"{FRONTEND_URL}/reset-password.html?token={reset_token}&email={email}"
     
     # 4. Prepare Email
     msg = MIMEMultipart()
@@ -292,7 +297,7 @@ async def callback_github(code: str, db: Session = Depends(get_db)):
         from routers.audit import log_action
         log_action(db, user_id=email, action="LOGIN_GITHUB", details={"provider": "github"})
         
-        frontend_redirect = f"http://localhost:3002/?social_token={access_token}&user_name={name}&user_id={email}&provider=github"
+        frontend_redirect = f"{FRONTEND_URL}/?social_token={access_token}&user_name={name}&user_id={email}&provider=github"
         return RedirectResponse(url=frontend_redirect)
     except Exception as e:
         import traceback
@@ -303,7 +308,7 @@ async def callback_github(code: str, db: Session = Depends(get_db)):
 @router.get("/login/discord")
 def login_discord():
     client_id = os.getenv("DISCORD_CLIENT_ID")
-    redirect_uri = "http://localhost:8000/api/auth/callback/discord"
+    redirect_uri = f"{BACKEND_URL}/api/auth/callback/discord"
     return {"url": f"https://discord.com/api/oauth2/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&scope=identify%20email"}
 
 class GoogleLoginRequest(BaseModel):
@@ -356,7 +361,7 @@ async def callback_discord(code: str, db: Session = Depends(get_db)):
         import requests
         client_id = os.getenv("DISCORD_CLIENT_ID")
         client_secret = os.getenv("DISCORD_CLIENT_SECRET")
-        redirect_uri = "http://localhost:8000/api/auth/callback/discord"
+        redirect_uri = f"{BACKEND_URL}/api/auth/callback/discord"
         
         data = {
             'client_id': client_id,
@@ -397,7 +402,7 @@ async def callback_discord(code: str, db: Session = Depends(get_db)):
         from routers.audit import log_action
         log_action(db, user_id=email, action="LOGIN_DISCORD", details={"provider": "discord"})
         
-        frontend_redirect = f"http://localhost:3002/?social_token={access_token}&user_name={name}&user_id={email}&provider=discord"
+        frontend_redirect = f"{FRONTEND_URL}/?social_token={access_token}&user_name={name}&user_id={email}&provider=discord"
         return RedirectResponse(url=frontend_redirect)
     except Exception as e:
         import traceback
