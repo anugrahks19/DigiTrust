@@ -51,22 +51,17 @@ class AuthManager {
             }
         }
 
-        // Initialize Overlay Component
-        if (!this.overlay && window.LoginOverlay) {
-            this.overlay = new LoginOverlay(this);
-        }
+        // Initialize Overlay Component - DEPRECATED (Using /login.html now)
+        // if (!this.overlay && window.LoginOverlay) {
+        //    this.overlay = new LoginOverlay(this);
+        // }
 
         this.updateUI();
     }
 
     showLoginModal() {
-        // Use Integrated Overlay
-        if (this.overlay) {
-            this.overlay.show();
-        } else {
-            console.warn("LoginOverlay not loaded, fallback to redirect");
-            window.location.href = '/';
-        }
+        // Redirect to dedicated login page
+        window.location.href = '/login.html';
     }
 
     handleLoginSuccess(data) {

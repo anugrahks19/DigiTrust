@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiTrust | Secure Access</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Login Styles -->
+    <link rel="stylesheet" href="css/login-page.css">
+    <!-- Google Identity API -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <!-- Background Elements -->
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="particles">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+        <div class="orb orb-6"></div>
+    </div>
+
+    <!-- Back to Home -->
+    <a href="/" class="back-home-btn">
+        <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- Main Container -->
+    <div class="container" id="container">
+
+        <!-- Sign Up Form (Initially Hidden) -->
+        <div class="form-container sign-up-container">
+            <form id="signupForm">
+                <h1>Create Account</h1>
+                <p class="subtitle">Start your journey with us</p>
+
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Name" id="signupName" required />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" id="signupEmail" required />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" id="signupPassword" required />
+                    <i class="fas fa-eye password-toggle" id="toggleSignupPassword"></i>
+                </div>
+
+                <button type="submit">Sign Up <i class="fas fa-arrow-right"></i></button>
+
+                <!-- Social Divider -->
+                <div class="divider"><span>or continue with</span></div>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social"><i class="fab fa-discord"></i></a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Sign In Form (Default) -->
+        <div class="form-container sign-in-container">
+            <form id="loginForm">
+                <h1>Welcome Back</h1>
+                <p class="subtitle">Enter your credentials to access the secure network.</p>
+
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" id="loginEmail" required />
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" id="loginPassword" required />
+                    <i class="fas fa-eye password-toggle" id="toggleLoginPassword"></i>
+                </div>
+
+                <div class="actions-row">
+                    <label class="remember-me">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+                </div>
+
+                <button type="submit">Sign In <i class="fas fa-arrow-right"></i></button>
+
+                <div class="divider"><span>or continue with</span></div>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social"><i class="fab fa-discord"></i></a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Overlay Container -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start your journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- App Logic -->
+    <script>
+        // Inject API_BASE_URL from deployment env if needed, otherwise defaults
+        window.API_BASE_URL = window.location.hostname.includes('localhost')
+            ? 'http://localhost:8000'
+            : 'https://digitrust1.onrender.com';
+    </script>
+    <script src="js/login-page.js"></script>
+</body>
+
+</html>

@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/premiumMascot.css?v=final">
     <link rel="stylesheet" href="css/dashboard.css?v=final">
     <link rel="stylesheet" href="css/modal.css?v=final">
-    <link rel="stylesheet" href="css/login-overlay.css?v=final">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -551,59 +551,6 @@
             </div>
         </div>
     </div>
-    <!-- Integrated Login Overlay -->
-    <div id="login-overlay-root" class="login-overlay-wrapper">
-        <div class="overlay-backdrop"></div>
-        <div class="auth-container" id="authContainer">
-            <button class="overlay-close" id="overlayCloseBtn">&times;</button>
-
-            <!-- Sign Up Form -->
-            <div class="form-container sign-up-container">
-                <form id="overlaySignupForm">
-                    <h1>Create Account</h1>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-google"></i></a>
-                    </div>
-                    <span>or use your email for registration</span>
-                    <input type="text" id="overlaySignupName" placeholder="Name" required />
-                    <input type="email" id="overlaySignupEmail" placeholder="Email" required />
-                    <input type="password" id="overlaySignupPassword" placeholder="Password" required />
-                    <button type="submit">Sign Up</button>
-                </form>
-            </div>
-
-            <!-- Sign In Form -->
-            <div class="form-container sign-in-container">
-                <form id="overlayLoginForm">
-                    <h1>Sign in</h1>
-                    <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-google"></i></a>
-                    </div>
-                    <span>or use your account</span>
-                    <input type="email" id="overlayLoginEmail" placeholder="Email" required />
-                    <input type="password" id="overlayLoginPassword" placeholder="Password" required />
-                    <a href="reset-password.html">Forgot your password?</a>
-                    <button type="submit">Sign In</button>
-                </form>
-            </div>
-
-            <!-- Overlay Panels -->
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-panel overlay-left">
-                        <h1>Welcome Back!</h1>
-                        <p>To keep connected with us please login with your personal info</p>
-                        <button class="ghost" id="overlaySignInBtn">Sign In</button>
-                    </div>
-                    <div class="overlay-panel overlay-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>Enter your personal details and start journey with us</p>
-                        <button class="ghost" id="overlaySignUpBtn">Sign Up</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- Add Route Modal -->
@@ -628,7 +575,6 @@
     <!-- Application Scripts -->
 
     <!-- Application Scripts -->
-    <script src="js/components/loginOverlay.js"></script>
     <script src="js/components/premiumMascot.js"></script>
     <script src="js/components/adminAuth.js"></script>
     <script src="js/auth.js?v=clean"></script>
