@@ -299,6 +299,8 @@ form {
     /* Darker text */
     margin-bottom: 25px;
     margin-top: 10px;
+    font-weight: 600;
+    /* Bolder */
 }
 
 /* Input Groups with Icons */
@@ -398,9 +400,12 @@ form {
 
 .divider span {
     padding: 0 10px;
-    color: #9ca3af;
+    color: #6b7280;
+    /* Slightly darker */
     font-size: 12px;
     background: #fff;
+    font-weight: 600;
+    /* Bolder */
 }
 
 .container {
