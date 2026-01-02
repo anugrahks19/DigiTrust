@@ -143,7 +143,7 @@ class AuthManager {
         await new Promise(r => setTimeout(r, 1500));
 
         try {
-            const baseUrl = window.API_BASE_URL || 'http://localhost:8000';
+            const baseUrl = this.getApiBaseUrl();
             const response = await fetch(`${baseUrl}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -156,28 +156,27 @@ class AuthManager {
             }
 
             const data = await response.json();
-
-            this.token = data.access_token;
-            this.user = { id: data.user_id, name: data.name };
-            localStorage.setItem('auth_token', this.token);
-            localStorage.setItem('auth_user', JSON.stringify(this.user));
+            this.handleLoginSuccess(data);
 
             if (window.showNotification) window.showNotification(`System Validated. Welcome, ${this.user.name}!`, 'success');
 
-            this.hideLoginModal();
-            this.updateUI();
-
-            if (appState.currentView === 'history' && window.loadUserHistory) {
-                window.loadUserHistory();
-            }
+            // Close overlay if using one
+            if (this.overlay) this.overlay.hide();
 
         } catch (error) {
+            console.error(error);
             if (window.showNotification) window.showNotification(error.message, 'error');
             else alert(error.message);
         } finally {
-            btn.querySelector('.pull-label').innerHTML = '[ PULL TO LOGIN ]';
-            btn.disabled = false;
+            if (btn) {
+                btn.querySelector('.pull-label').innerHTML = '[ PULL TO LOGIN ]';
+                btn.disabled = false;
+            }
         }
+    }
+
+    getApiBaseUrl() {
+        return window.API_BASE_URL || 'https://digitrust1.onrender.com';
     }
 
     logout() {

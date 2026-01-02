@@ -99,7 +99,7 @@ function switchView(viewName) {
     });
 
     if (viewName === 'login') {
-        window.location.href = 'http://localhost:3002'; // Redirect to login page
+        window.location.href = '/'; // Redirect to home/login // Redirect to login page
         return;
     }
     // Toggle User Badge Visibility based on View
@@ -339,7 +339,7 @@ async function apiRequest(endpoint, options = {}) {
             localStorage.removeItem('auth_token');
             alert("Session expired. Please login again.");
             if (window.authManager) window.authManager.showLoginModal();
-            else window.location.href = 'http://localhost:3002';
+            else window.location.href = '/'; // Redirect to home/login
             throw new Error("Unauthorized");
         }
 
