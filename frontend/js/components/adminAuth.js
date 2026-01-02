@@ -543,7 +543,14 @@ class AdminAuth {
         if (targetView && !document.getElementById(`${viewName}LogoutBtn`)) {
             const logoutBtn = document.createElement('button');
             logoutBtn.id = `${viewName}LogoutBtn`;
-            logoutBtn.className = 'btn btn-outline admin-logout-btn';
+
+            // Use btn-primary for gradient, remove admin-logout-btn (which forces absolute pos) for nav injections
+            if (viewName !== 'admin') {
+                logoutBtn.className = 'btn btn-primary';
+            } else {
+                logoutBtn.className = 'btn btn-outline admin-logout-btn';
+            }
+
             logoutBtn.innerHTML = `
                 <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -552,6 +559,7 @@ class AdminAuth {
                 </svg>
                 Logout
             `;
+
             logoutBtn.onclick = () => {
                 this.logout();
                 if (window.switchView) {
@@ -566,19 +574,24 @@ class AdminAuth {
 
             // POSITIONING LOGIC
             if (viewName !== 'admin') {
-                // For Postman/Delivery: Add to Navbar beside Theme Toggle
+                // For Postman/Delivery: Add to Navbar AFTER Theme Toggle
                 const navbarContainer = document.querySelector('.navbar .container');
                 const themeToggle = document.getElementById('themeToggle');
 
                 if (navbarContainer && themeToggle) {
-                    logoutBtn.style.marginRight = '15px'; // Spacing from moon
-                    logoutBtn.style.padding = '8px 16px'; // Compact sizing
-                    logoutBtn.style.height = '40px';      // Match toggle height roughly
+                    logoutBtn.style.marginLeft = '1rem';  // Spacing left of button (between moon and button)
+                    logoutBtn.style.padding = '8px 16px';
+                    logoutBtn.style.height = '40px';
                     logoutBtn.style.display = 'flex';
                     logoutBtn.style.alignItems = 'center';
                     logoutBtn.style.gap = '8px';
 
-                    navbarContainer.insertBefore(logoutBtn, themeToggle);
+                    // Insert AFTER themeToggle
+                    if (themeToggle.nextSibling) {
+                        navbarContainer.insertBefore(logoutBtn, themeToggle.nextSibling);
+                    } else {
+                        navbarContainer.appendChild(logoutBtn);
+                    }
                 }
             } else {
                 // For Admin: Keep inside the view container
