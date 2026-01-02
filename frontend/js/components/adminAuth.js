@@ -540,13 +540,19 @@ class AdminAuth {
         const viewId = `${viewName}View`;
         const targetView = document.getElementById(viewId);
 
+        // CLEANUP: Remove any existing agent logout buttons from Navbar to prevent duplicates
+        if (viewName !== 'admin') {
+            const existingAgentBtns = document.querySelectorAll('.agent-logout-btn');
+            existingAgentBtns.forEach(btn => btn.remove());
+        }
+
         if (targetView && !document.getElementById(`${viewName}LogoutBtn`)) {
             const logoutBtn = document.createElement('button');
             logoutBtn.id = `${viewName}LogoutBtn`;
 
             // Use btn-primary for gradient, remove admin-logout-btn (which forces absolute pos) for nav injections
             if (viewName !== 'admin') {
-                logoutBtn.className = 'btn btn-primary';
+                logoutBtn.className = 'btn btn-primary agent-logout-btn';
             } else {
                 logoutBtn.className = 'btn btn-outline admin-logout-btn';
             }
