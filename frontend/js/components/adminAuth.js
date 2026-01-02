@@ -540,22 +540,16 @@ class AdminAuth {
         const viewId = `${viewName}View`;
         const targetView = document.getElementById(viewId);
 
-        // CLEANUP: Remove any existing agent logout buttons from Navbar to prevent duplicates
-        if (viewName !== 'admin') {
-            const existingAgentBtns = document.querySelectorAll('.agent-logout-btn');
-            existingAgentBtns.forEach(btn => btn.remove());
-        }
+        // CLEANUP: Remove ANY existing logout buttons (Admin or Agent) from Navbar to prevent duplicates
+        const existingBtns = document.querySelectorAll('.agent-logout-btn');
+        existingBtns.forEach(btn => btn.remove());
 
         if (targetView && !document.getElementById(`${viewName}LogoutBtn`)) {
             const logoutBtn = document.createElement('button');
             logoutBtn.id = `${viewName}LogoutBtn`;
 
-            // Use btn-primary for gradient, remove admin-logout-btn (which forces absolute pos) for nav injections
-            if (viewName !== 'admin') {
-                logoutBtn.className = 'btn btn-primary agent-logout-btn';
-            } else {
-                logoutBtn.className = 'btn btn-outline admin-logout-btn';
-            }
+            // Standardize styling for Navbar injection (Use btn-primary for everyone)
+            logoutBtn.className = 'btn btn-primary agent-logout-btn'; // Added marker class to Admin too
 
             logoutBtn.innerHTML = `
                 <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -578,38 +572,28 @@ class AdminAuth {
                 if (logoutBtn.parentNode) logoutBtn.remove();
             };
 
-            // POSITIONING LOGIC
-            if (viewName !== 'admin') {
-                // For Postman/Delivery: Add to Navbar AFTER Theme Toggle
-                const navbarContainer = document.querySelector('.navbar .container');
-                const themeToggle = document.getElementById('themeToggle');
+            // UNIVERSAL POSITIONING LOGIC: Add to Navbar AFTER Theme Toggle for ALL roles
+            const navbarContainer = document.querySelector('.navbar .container');
+            const themeToggle = document.getElementById('themeToggle');
 
-                if (navbarContainer && themeToggle) {
-                    logoutBtn.style.marginLeft = '1rem';  // Spacing left of button (between moon and button)
-                    logoutBtn.style.padding = '8px 16px';
-                    logoutBtn.style.height = '40px';
-                    logoutBtn.style.display = 'flex';
-                    logoutBtn.style.alignItems = 'center';
-                    logoutBtn.style.gap = '8px';
+            if (navbarContainer && themeToggle) {
+                logoutBtn.style.marginLeft = '1rem';
+                logoutBtn.style.padding = '8px 16px';
+                logoutBtn.style.height = '40px';
+                logoutBtn.style.display = 'flex';
+                logoutBtn.style.alignItems = 'center';
+                logoutBtn.style.gap = '8px';
 
-                    // Insert AFTER themeToggle
-                    if (themeToggle.nextSibling) {
-                        navbarContainer.insertBefore(logoutBtn, themeToggle.nextSibling);
-                    } else {
-                        navbarContainer.appendChild(logoutBtn);
-                    }
+                // Insert AFTER themeToggle
+                if (themeToggle.nextSibling) {
+                    navbarContainer.insertBefore(logoutBtn, themeToggle.nextSibling);
+                } else {
+                    navbarContainer.appendChild(logoutBtn);
                 }
             } else {
-                // For Admin: Keep inside the view container
-                const container = targetView.querySelector('.container') || targetView;
-                if (container) {
-                    container.style.position = 'relative';
-                    if (container.firstChild) {
-                        container.insertBefore(logoutBtn, container.firstChild);
-                    } else {
-                        container.appendChild(logoutBtn);
-                    }
-                }
+                // Fallback
+                console.warn('Navbar or Theme Toggle not found, appending to View.');
+                targetView.appendChild(logoutBtn);
             }
         }
     }
