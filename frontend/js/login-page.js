@@ -287,25 +287,21 @@ async function startSocialLogin(provider) {
 }
 
 // --- Click Handlers ---
-document.querySelectorAll('.social-container a').forEach(icon => {
-    icon.addEventListener('click', (e) => {
+// --- Click Handlers ---
+document.querySelectorAll('.google-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
         e.preventDefault();
-        const iconClass = icon.querySelector('i').className;
 
-        if (iconClass.includes('google')) {
-            if (GOOGLE_CLIENT_ID.includes('YOUR_')) {
-                alert("Setup Google ID!");
-            } else if (tokenClient) {
-                tokenClient.requestAccessToken();
-            } else {
-                showToast("Google API loading...", true);
-            }
+        // Ensure Google Script is loaded
+        if (typeof google === 'undefined' || !tokenClient) {
+            showToast("Google API loading...", true);
+            return;
         }
-        else if (iconClass.includes('github')) {
-            startSocialLogin('github');
-        }
-        else if (iconClass.includes('discord')) {
-            startSocialLogin('discord');
+
+        if (GOOGLE_CLIENT_ID.includes('YOUR_')) {
+            alert("Setup Google ID!");
+        } else {
+            tokenClient.requestAccessToken();
         }
     });
 });
