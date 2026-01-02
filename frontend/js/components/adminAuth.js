@@ -536,11 +536,13 @@ class AdminAuth {
         }
     }
 
-    createLogoutButton() {
-        const adminView = document.getElementById('adminView');
-        if (adminView && !document.getElementById('adminLogoutBtn')) {
+    createLogoutButton(viewName = 'admin') {
+        const viewId = `${viewName}View`;
+        const targetView = document.getElementById(viewId);
+
+        if (targetView && !document.getElementById(`${viewName}LogoutBtn`)) {
             const logoutBtn = document.createElement('button');
-            logoutBtn.id = 'adminLogoutBtn';
+            logoutBtn.id = `${viewName}LogoutBtn`;
             logoutBtn.className = 'btn btn-outline admin-logout-btn';
             logoutBtn.innerHTML = `
                 <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -552,14 +554,31 @@ class AdminAuth {
             `;
             logoutBtn.onclick = () => {
                 this.logout();
-                document.querySelector('[data-view="submit"]').click();
-                alert('✓ Logged out successfully');
+                if (window.switchView) {
+                    window.switchView('submit'); // Go to main validation page
+                } else {
+                    window.location.reload();
+                }
+                showNotification('✓ Logged out successfully', 'success');
             };
 
-            const container = adminView.querySelector('.container');
+            const container = targetView.querySelector('.container') || targetView;
             if (container) {
-                container.style.position = 'relative';
-                container.insertBefore(logoutBtn, container.firstChild);
+                // For Postman/Delivery, style it floating or at top
+                if (viewName !== 'admin') {
+                    logoutBtn.style.position = 'absolute';
+                    logoutBtn.style.top = '2rem';
+                    logoutBtn.style.right = '2rem';
+                    logoutBtn.style.zIndex = '100';
+                } else {
+                    container.style.position = 'relative';
+                }
+
+                if (container.firstChild) {
+                    container.insertBefore(logoutBtn, container.firstChild);
+                } else {
+                    container.appendChild(logoutBtn);
+                }
             }
         }
     }

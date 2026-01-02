@@ -14,8 +14,8 @@ async function loadUserHistory() {
     `;
 
     try {
-        const userId = appState.currentUser;
-        const data = await apiRequest(`/api/history/${userId}`);
+        // ID is inferred from the Auth Token by backend
+        const data = await apiRequest(`/api/history`);
 
         if (!data.history || data.history.length === 0) {
             container.innerHTML = `

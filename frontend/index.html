@@ -20,12 +20,15 @@
     <!-- Axios for API calls -->
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.2/dist/axios.min.js"></script>
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login-styles.css">
-    <link rel="stylesheet" href="css/character-styles.css">
-    <link rel="stylesheet" href="css/premiumMascot.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/style.css?v=final">
+    <link rel="stylesheet" href="css/auth.css?v=final">
+    <link rel="stylesheet" href="css/login-styles.css?v=final">
+    <link rel="stylesheet" href="css/character-styles.css?v=final">
+    <link rel="stylesheet" href="css/premiumMascot.css?v=final">
+    <link rel="stylesheet" href="css/dashboard.css?v=final">
+    <link rel="stylesheet" href="css/modal.css?v=final">
+    <link rel="stylesheet" href="css/login-overlay.css?v=final">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -39,6 +42,8 @@
             <div class="nav-menu">
                 <a href="#" class="nav-link active" data-view="submit">Validate Address</a>
                 <a href="#" class="nav-link" data-view="history">History</a>
+                <a href="#" class="nav-link" data-view="privacy">Privacy Ledger</a>
+                <a href="#" class="nav-link" data-view="developers">Developers</a>
                 <a href="#" class="nav-link" data-view="guide">Guide</a>
                 <a href="#" class="nav-link admin-link" data-view="admin">Admin</a>
             </div>
@@ -265,8 +270,85 @@
                 <div class="glass" style="margin-top: 2rem; padding: 2rem; border-radius: 1rem; text-align: center;">
                     <h3>Ready to get started?</h3>
                     <button class="btn btn-primary btn-lg" style="margin-top: 1rem;" onclick="switchView('submit')">
-                        Validate Now
+                        Go to Validation
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Ledger View -->
+        <div id="privacyView" class="view">
+            <div class="container">
+                <div class="hero-section" style="padding: 2rem 0; text-align: left;">
+                    <h1 class="hero-title" style="font-size: 2.5rem;">
+                        Privacy <span class="gradient-text">Ledger</span>
+                    </h1>
+                    <p class="hero-subtitle" style="font-size: 1.1rem; max-width: 600px; margin: 1rem 0 0 0;">
+                        Transparency is our core value. This immutable log shows exactly how
+                        your data is being accessed and used within the DigiTrust ecosystem.
+                    </p>
+                </div>
+
+                <div class="glass" style="overflow-x: auto;">
+                    <table class="audit-table"
+                        style="width: 100%; border-collapse: collapse; color: var(--text-primary);">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border-color); text-align: left;">
+                                <th style="padding: 1rem;">Timestamp</th>
+                                <th style="padding: 1rem;">Action</th>
+                                <th style="padding: 1rem;">Details</th>
+                                <th style="padding: 1rem;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="auditLogBody">
+                            <!-- Logs injected here -->
+                            <tr>
+                                <td colspan="4" style="text-align: center; padding: 2rem;">Loading logs...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Developers Sandbox View -->
+        <div id="developersView" class="view">
+            <div class="container">
+                <div class="hero-section" style="padding: 2rem 0; text-align: left;">
+                    <h1 class="hero-title" style="font-size: 2.5rem;">
+                        Build on <span class="gradient-text">DigiTrust</span>
+                    </h1>
+                    <p class="hero-subtitle" style="font-size: 1.1rem; max-width: 600px; margin: 1rem 0 0 0;">
+                        Integrate our Address Validation Protocol into your own apps.
+                        Get your API Key and start validating instantly.
+                    </p>
+                </div>
+
+                <div class="glass" style="padding: 2rem; margin-bottom: 2rem;">
+                    <h3>🔑 Your API Key</h3>
+                    <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem; flex-wrap: wrap;">
+                        <input type="text" id="apiKeyDisplay" readonly
+                            style="flex: 1; padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.2); font-family: monospace; font-size: 1.1rem; color: var(--primary-color);"
+                            value="Click Generate to create a key...">
+                        <button id="generateKeyBtn" class="btn btn-primary">
+                            Generate New Key
+                        </button>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+                        ⚠️ Generating a new key will revoke your old one immediately.
+                    </p>
+                </div>
+
+                <div class="glass" style="padding: 2rem;">
+                    <h3>🚀 Quick Start Example</h3>
+                    <pre
+                        style="background: #1e1e2e; padding: 1.5rem; border-radius: 8px; overflow-x: auto; margin-top: 1rem; border: 1px solid var(--border-color); box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);"><code style="color: #e0e7ff; font-family: 'Fira Code', monospace; line-height: 1.6;">curl -X POST "http://localhost:8000/api/validate" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "address": "123 Main St, Bangalore",
+           "user_id": "customer_001"
+         }'</code></pre>
                 </div>
             </div>
         </div>
@@ -365,57 +447,71 @@
                 <div class="dashboard-header">
                     <div>
                         <h1 class="page-title">Delivery Dashboard</h1>
+                        <p>• Active</p>
+                    </div>
+                    <div class="user-badge">
+                        <span class="role-icon">🚚</span>
+                        <span>Delivery</span>
+                    </div>
+
+                    <!-- Welcome Banner -->
+                    <div class="welcome-banner">
+                        <div class="welcome-banner-content">
+                            <h2 class="welcome-title">Welcome back, Agent!</h2>
+                            <p class="welcome-subtitle">You're logged in as <span class="welcome-id">DELIVERY-01</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-            </div>
 
-            <!-- KPI Cards -->
-            <div class="kpi-grid">
-                <div class="kpi-card glass">
-                    <div class="kpi-icon" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">📦</div>
-                    <div class="kpi-value">8</div>
-                    <div class="kpi-label">To Deliver</div>
-                </div>
-                <div class="kpi-card glass">
-                    <div class="kpi-icon" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">🚚</div>
-                    <div class="kpi-value">32</div>
-                    <div class="kpi-label">Delivered</div>
-                </div>
-                <div class="kpi-card glass">
-                    <div class="kpi-icon" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">⭐</div>
-                    <div class="kpi-value">4.9</div>
-                    <div class="kpi-label">Rating</div>
-                </div>
-            </div>
 
-            <!-- Actions & List -->
-            <div class="dashboard-content-grid">
-                <div class="action-section glass">
-                    <h2>Quick Actions</h2>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary btn-lg" onclick="alert('Starting Route Navigation...')">
-                            🗺️ Start Route
-                        </button>
-                        <button class="btn btn-outline btn-lg" onclick="alert('Opening Scanner...')">
-                            📷 Scan Parcel
-                        </button>
-                        <button class="btn btn-outline btn-lg" onclick="addExtraRoute('delivery')">
-                            ➕ Add Route
-                        </button>
+                <!-- KPI Cards -->
+                <div class="kpi-grid">
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">📦</div>
+                        <div class="kpi-value">8</div>
+                        <div class="kpi-label">To Deliver</div>
+                    </div>
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">🚚</div>
+                        <div class="kpi-value">32</div>
+                        <div class="kpi-label">Delivered</div>
+                    </div>
+                    <div class="kpi-card glass">
+                        <div class="kpi-icon" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">⭐</div>
+                        <div class="kpi-value">4.9</div>
+                        <div class="kpi-label">Rating</div>
                     </div>
                 </div>
-                <div class="list-section glass">
-                    <h2>Active Deliveries</h2>
-                    <div id="deliveryTaskList" class="task-list">
-                        <!-- Populated dynamically -->
-                        <div class="loading-state">
-                            <div class="spinner"></div>
+
+                <!-- Actions & List -->
+                <div class="dashboard-content-grid">
+                    <div class="action-section glass">
+                        <h2>Quick Actions</h2>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary btn-lg" onclick="alert('Starting Route Navigation...')">
+                                🗺️ Start Route
+                            </button>
+                            <button class="btn btn-outline btn-lg" onclick="alert('Opening Scanner...')">
+                                📷 Scan Parcel
+                            </button>
+                            <button class="btn btn-outline btn-lg" onclick="addExtraRoute('delivery')">
+                                ➕ Add Route
+                            </button>
+                        </div>
+                    </div>
+                    <div class="list-section glass">
+                        <h2>Active Deliveries</h2>
+                        <div id="deliveryTaskList" class="task-list">
+                            <!-- Populated dynamically -->
+                            <div class="loading-state">
+                                <div class="spinner"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
 
@@ -478,15 +574,20 @@
 
     <!-- Application Scripts -->
 
-    <script src="js/app.js"></script>
+    <!-- Application Scripts -->
+    <script src="js/auth.js?v=clean"></script>
+    <script src="js/components/loginOverlay.js"></script>
     <script src="js/components/premiumMascot.js"></script>
     <script src="js/components/adminAuth.js"></script>
     <script src="js/components/mapPicker.js"></script>
     <script src="js/components/addressForm.js"></script>
-    <script src="js/components/validationResult.js"></script>
-    <script src="js/views/history.js"></script>
+    <script src="js/components/validationResult.js?v=debug1"></script>
+    <script src="js/views/history.js?v=debug1"></script>
     <script src="js/views/adminDashboard.js"></script>
     <script src="js/views/agentDashboards.js"></script>
+    <script src="js/views/privacy.js?v=debug1"></script>
+    <script src="js/views/developers.js?v=debug1"></script>
+    <script src="js/app.js?v=debugOrderFixed"></script>
 </body>
 
 </html>

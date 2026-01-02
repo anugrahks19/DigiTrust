@@ -4,6 +4,7 @@ from typing import Dict, List, Tuple, Any
 from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 import json
+import requests
 from utils.geospatial import GeospatialUtils
 from utils.linguistic_patterns import LinguisticValidator
 
@@ -45,6 +46,27 @@ class EvidenceAggregator:
                     self.iot_data = list(reader)
         except Exception as e:
             print(f"Warning: Could not load mock data: {e}")
+
+    def _fetch_real_pin_data(self, pin: str) -> Dict[str, Any]:
+        """
+        Fetch real data from Open Government Data (OGD) API wrapper
+        Source: api.postalpincode.in
+        """
+        try:
+            # Timeout set to 2s to not slow down the demo
+            response = requests.get(f"https://api.postalpincode.in/pincode/{pin}", timeout=5.0, headers={"User-Agent": "DigiTrust-AVP/1.0"})
+            if response.status_code == 200:
+                data = response.json()
+                if data and isinstance(data, list) and data[0]['Status'] == 'Success':
+                    return {
+                        "available": True,
+                        "offices": data[0]['PostOffice']
+                    }
+        except Exception as e:
+            # Fail silently for demo if offline/timeout
+            pass
+        
+        return {"available": False}
     
     def get_geo_evidence(self, address: Dict[str, str]) -> Tuple[float, Dict[str, Any]]:
         """
@@ -101,12 +123,33 @@ class EvidenceAggregator:
             city_match = 1.0 if city == grid_city else 0.3
             pin_match = 1.0 if pin == grid_pin else 0.0
             
+            # HYBRID MODE: Fetch Real Data
+            real_data = self._fetch_real_pin_data(pin)
+            real_data_bonus = 0
+            real_data_verified = False
+            
+            if real_data["available"]:
+                # Check if our city/district appears in the real real post office data
+                for office in real_data["offices"]:
+                    if (city in office.get("District", "").lower() or 
+                        city in office.get("Division", "").lower() or
+                        city in office.get("Region", "").lower()):
+                        real_data_bonus = 10
+                        real_data_verified = True
+                        break
+            
             # Weighted combination
+            # Base score from mock grid + Bonus from real API
+            # Mock grid weights: Locality(40) + City(30) + Pin(30)
             score = (locality_sim * 40 + city_match * 30 + pin_match * 30)
             
+            # Apply Real Data Bonus (Cap at 100)
+            score = min(100.0, score + real_data_bonus)
+            
             details = {
-                "method": "digipin_matched",
+                "method": "digipin_matched_hybrid" if real_data_verified else "digipin_matched",
                 "matched": True,
+                "real_data_verified": real_data_verified,
                 "grid_locality": grid_match.get('locality'),
                 "grid_city": grid_match.get('city'),
                 "grid_pin": grid_match.get('pin'),

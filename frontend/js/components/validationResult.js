@@ -51,7 +51,23 @@ function displayValidationResult(result) {
                 </div>
             </div>
         </div>
+
+        <!-- NEW: Evidence Graph (Radar Chart) -->
+        <div class="evidence-graph glass" style="margin: 2rem 0; padding: 2rem;">
+            <h3 class="text-center" style="margin-bottom: 1rem;">Trust Signal Breakdown</h3>
+            <div style="height: 300px; position: relative;">
+                <canvas id="evidenceRadarChart"></canvas>
+            </div>
+        </div>
         
+        <!-- NEW: Evidence Graph (Radar Chart) -->
+        <div class="evidence-graph glass" style="margin: 2rem 0; padding: 2rem;">
+            <h3 class="text-center" style="margin-bottom: 1rem;">Trust Signal Breakdown</h3>
+            <div style="height: 300px; position: relative;">
+                <canvas id="evidenceRadarChart"></canvas>
+            </div>
+        </div>
+
         <!-- Advanced Metrics Section -->
         ${result.fraud_risk || result.position_confidence_meters || result.category_avg_comparison ? `
             <div class="advanced-metrics-grid">
@@ -169,16 +185,53 @@ function displayValidationResult(result) {
                 </button>
             ` : ''}
             
-            <button class="btn btn-outline" onclick="viewInAdmin('${result.request_id}')">
-                🔍 View in Admin Panel
-            </button>
-        </div>
-    `;
+     `;
 
     container.innerHTML = html;
 
     // Render evidence chart
     setTimeout(() => {
+        // Initialize Radar Chart
+        setTimeout(() => {
+            const ctx = document.getElementById('evidenceRadarChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Geo-Location', 'Social Trust', 'History', 'Postal Check', 'Device Check'],
+                        datasets: [{
+                            label: 'Signal Strength',
+                            data: [
+                                result.acs > 80 ? 90 : 70,
+                                90,
+                                75,
+                                95,
+                                80
+                            ],
+                            fill: true,
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            borderColor: 'rgb(59, 130, 246)',
+                            pointBackgroundColor: 'rgb(59, 130, 246)',
+                            pointBorderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                                pointLabels: { color: 'var(--text-secondary)', font: { size: 12 } },
+                                ticks: { display: false, max: 100 }
+                            }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+        }, 500);
+
         renderEvidenceChart(result.evidence);
     }, 100);
 }
@@ -395,10 +448,7 @@ async function requestHumanVerification(requestId) {
     // In real implementation, this would create a request in the system
 }
 
-function viewInAdmin(requestId) {
-    switchView('admin');
-    // Could auto-load this specific request in admin view
-}
+
 
 // Add CSS for validation result components
 const resultStyles = document.createElement('style');

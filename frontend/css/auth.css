@@ -1,0 +1,329 @@
+/* Rube Goldberg V2 - High Fidelity Technical Blueprint */
+
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* Canvas & Grid */
+.auth-page-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    background: #fdfdfd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+    overflow: hidden;
+    color: #111;
+    font-family: 'Space Mono', monospace;
+}
+
+.auth-page-container.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Blueprint Grid Background */
+.blueprint-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* Subtle technical grid */
+    background-image:
+        linear-gradient(#e1e1e1 1px, transparent 1px),
+        linear-gradient(90deg, #e1e1e1 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Main Machine Assembly Container */
+.mech-assembly {
+    position: relative;
+    z-index: 10;
+    width: 1000px;
+    height: 800px;
+    /* Debug outline to see layout, remove later if needed */
+    /* border: 1px dashed #ccc; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+/* --- The continuous Wire System --- */
+.wire-system {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Header Annotation */
+.machine-header {
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 2rem;
+    transform: rotate(-2deg);
+    border: 2px solid #111;
+    padding: 10px 20px;
+    background: #fff;
+    box-shadow: 3px 3px 0 #111;
+}
+
+/* --- Input Mechanical Frames --- */
+.input-mechanism-row {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    position: relative;
+    margin-top: 100px;
+    z-index: 5;
+}
+
+.mech-input-box {
+    position: relative;
+    width: 320px;
+    height: 180px;
+    background-image: url('../img/auth/mech_frame.png');
+    background-size: 100% 100%;
+    /* Stretch to fit */
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 50px;
+    /* Adjust based on image frame thicknes */
+}
+
+/* Wires connecting inputs */
+.mech-input-box::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 4px;
+    background: #222;
+    z-index: -1;
+}
+
+/* Wire extending Left from Email */
+#emailFrame::before {
+    left: -40px;
+}
+
+/* Wire connecting Email -> Pass */
+.connector-cable {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    /* Gap size */
+    height: 8px;
+    /* Thick cable */
+    background: repeating-linear-gradient(45deg,
+            #333,
+            #333 4px,
+            #555 4px,
+            #555 8px);
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.mech-label {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.mech-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px dashed #333;
+    font-family: 'Space Mono', monospace;
+    text-align: center;
+    font-size: 1.1rem;
+    outline: none;
+    padding: 5px;
+}
+
+/* --- Interlocking Gears --- */
+.gear-cluster {
+    position: absolute;
+    top: 40px;
+    right: 150px;
+    width: 150px;
+    height: 150px;
+    background-image: url('../img/auth/complex_gears.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 2;
+    /* Connects to right side of password box visually */
+}
+
+/* Cable from Password Box to Gear Cluster */
+.cable-to-gears {
+    position: absolute;
+    top: 190px;
+    right: 320px;
+    width: 100px;
+    height: 6px;
+    background: #111;
+    transform: rotate(-15deg);
+    z-index: 0;
+}
+
+/* --- Balance Scale --- */
+.balance-section {
+    position: absolute;
+    bottom: 250px;
+    left: 100px;
+    width: 250px;
+    height: 250px;
+    background-image: url('../img/auth/balance_scale.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* Align inputs near pans (approx) */
+}
+
+/* Position checkbox on the Left Pan area */
+.scale-check-wrapper {
+    position: absolute;
+    top: 60%;
+    left: 15%;
+    width: 80px;
+    text-align: center;
+}
+
+.mech-checkbox {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #000;
+}
+
+.scale-label {
+    display: block;
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 1.2rem;
+    line-height: 1;
+    margin-top: 5px;
+}
+
+/* Wire connecting Scale to Main System */
+.scale-wire {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100px;
+    /* Goes up to email frame */
+    width: 2px;
+    background: #111;
+    transform: translateY(-100%);
+}
+
+/* --- Pulley Login Button --- */
+.pulley-system-container {
+    position: absolute;
+    right: 100px;
+    top: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* The Rope coming down from gears */
+.main-rope {
+    width: 4px;
+    height: 150px;
+    background: #000;
+    margin-bottom: -10px;
+    /* Connect to hand */
+    z-index: 10;
+}
+
+/* The Hand Handle (Button) */
+.hand-pull-btn {
+    width: 180px;
+    height: 250px;
+    background: transparent;
+    border: none;
+    background-image: url('../img/auth/pull_hand.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    cursor: grab;
+    transition: transform 0.2s cubic-bezier(0.4, 2, 0.5, 1);
+    position: relative;
+    z-index: 20;
+}
+
+.hand-pull-btn:active {
+    transform: translateY(50px);
+    cursor: grabbing;
+}
+
+.pull-label {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-weight: bold;
+    background: #fff;
+    border: 1px solid #000;
+    padding: 5px;
+    font-size: 0.9rem;
+}
+
+/* Annotations */
+.annotation {
+    position: absolute;
+    font-family: 'Reenie Beanie';
+    color: #444;
+    font-size: 1.2rem;
+}
+
+.anno-1 {
+    top: 180px;
+    left: 200px;
+    transform: rotate(-5deg);
+}
+
+.anno-2 {
+    bottom: 20px;
+    right: 200px;
+}
+
+/* Exit */
+.exit-blueprint {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'Space Mono';
+    font-size: 2rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.exit-blueprint:hover {
+    opacity: 1;
+}

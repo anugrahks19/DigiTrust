@@ -4,6 +4,7 @@ from database import get_db, ValidationRequest, Address, User, EvidenceSignal, V
 from models import ValidationRequestInput, ValidationResultOutput, ValidationHistoryItem, EvidenceComponent
 from scoring_engine import ScoringEngine
 from token_service import TokenService
+from utils.auth import get_current_user_id
 import uuid
 from datetime import datetime
 import hashlib
@@ -20,7 +21,7 @@ def hash_pii(value: str) -> str:
 
 
 @router.post("/validate", response_model=ValidationResultOutput)
-async def validate_address(request: ValidationRequestInput, db: Session = Depends(get_db)):
+async def validate_address(request: ValidationRequestInput, user_id: str = Depends(get_current_user_id), db: Session = Depends(get_db)):
     """
     Submit an Address Validation Request (AVR)
     
@@ -33,10 +34,13 @@ async def validate_address(request: ValidationRequestInput, db: Session = Depend
     6. Issues token if ACS >= VL2 threshold
     """
     
+    # [SECURITY FIX] Override request user_id with authentic token user_id
+    request.user_id = user_id
+
     # Create or get user
-    user = db.query(User).filter(User.id == request.user_id).first()
+    user = db.query(User).filter(User.id == user_id).first()
     if not user:
-        user = User(id=request.user_id, created_at=datetime.utcnow())
+        user = User(id=user_id, created_at=datetime.utcnow())
         db.add(user)
     
     # Create address
@@ -231,8 +235,8 @@ async def get_token(request_id: str, db: Session = Depends(get_db)):
     }
 
 
-@router.get("/history/{user_id}")
-async def get_user_history(user_id: str, db: Session = Depends(get_db)):
+@router.get("/history")
+async def get_user_history(user_id: str = Depends(get_current_user_id), db: Session = Depends(get_db)):
     """Get user's validation history"""
     
     user = db.query(User).filter(User.id == user_id).first()

@@ -1,0 +1,591 @@
+:root {
+    /* Match Frontend Variables */
+    --primary: hsl(240, 85%, 60%);
+    --secondary: hsl(280, 75%, 65%);
+    --gradient: linear-gradient(135deg, hsl(240, 85%, 60%) 0%, hsl(280, 75%, 65%) 100%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f3f4f6;
+    /* Login 3 Base Color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+    /* Changed from Montserrat */
+    height: 100vh;
+    margin: -20px 0 50px;
+}
+
+
+/* --- Animated Background Shapes (Ported from Login 3) --- */
+.background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: floatShape 20s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.shape-1 {
+    top: -10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: #4f46e5;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+.shape-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: #ec4899;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    top: 30%;
+    left: 40%;
+    width: 300px;
+    height: 300px;
+    background: #8b5cf6;
+    border-radius: 50%;
+    animation-delay: -10s;
+}
+
+/* --- Animated Floating Orbs --- */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    /* Behind container, in front of shapes */
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    animation: floatOrb 15s infinite ease-in-out;
+}
+
+.orb-1 {
+    width: 40px;
+    height: 40px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 20px;
+    height: 20px;
+    top: 20%;
+    right: 20%;
+    animation-delay: -5s;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.orb-3 {
+    width: 60px;
+    height: 60px;
+    bottom: 15%;
+    left: 20%;
+    animation-delay: -2s;
+    opacity: 0.3;
+}
+
+.orb-4 {
+    width: 30px;
+    height: 30px;
+    bottom: 30%;
+    right: 10%;
+    animation-delay: -8s;
+}
+
+.orb-5 {
+    width: 15px;
+    height: 15px;
+    top: 40%;
+    left: 50%;
+    animation-delay: -12s;
+}
+
+.orb-6 {
+    width: 45px;
+    height: 45px;
+    top: 80%;
+    right: 40%;
+    animation-delay: -4s;
+    opacity: 0.2;
+}
+
+@keyframes floatOrb {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    33% {
+        transform: translateY(-30px) translateX(20px);
+    }
+
+    66% {
+        transform: translateY(20px) translateX(-10px);
+    }
+}
+
+@keyframes floatShape {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+
+    100% {
+        transform: translate(50px, 50px) rotate(20deg);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+}
+
+
+h1 {
+    font-weight: 800;
+    /* Bolder like frontend */
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    /* Match headings */
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}
+
+span {
+    font-size: 12px;
+}
+
+a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+button {
+    border-radius: 12px;
+    /* radius-md */
+    border: none;
+    background: var(--gradient);
+    /* Use brand gradient */
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 45px;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    /* Frontend uses normal case mostly */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+    /* Floating shadow */
+}
+
+button:hover {
+    transform: translateY(-2px);
+    /* Lift effect */
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.6);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:focus {
+    outline: none;
+}
+
+button.ghost {
+    background: transparent;
+    border-color: #FFFFFF;
+    box-shadow: none;
+    /* No shadow for ghost button initially */
+    border: 1px solid #fff;
+}
+
+button.ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+form {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Vertical Center */
+    flex-direction: column;
+    padding: 80px 50px 30px 50px;
+    /* Added 30px bottom padding to lift content off border */
+    height: 100%;
+    text-align: center;
+}
+
+/* Back to Home Button */
+.back-home-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #4b5563;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    padding: 8px 16px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.back-home-btn:hover {
+    transform: translateX(-3px);
+    color: #4f46e5;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-container {
+    /* ADJUST HERE: First value (-5px) pulls icons closer to divider. */
+    margin: -5px 0 20px 0;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 25px;
+    margin-top: 10px;
+}
+
+/* Input Groups with Icons */
+.input-group {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    /* Default: Left side */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0a5b8;
+    transition: color 0.3s ease;
+    font-size: 14px;
+    z-index: 1;
+}
+
+/* Explicitly reset for password toggle if it picked up generic styles */
+.input-group .password-toggle {
+    left: auto !important;
+    right: 15px !important;
+    /* Move only this icon to right */
+    cursor: pointer;
+    z-index: 2;
+}
+
+.input-group input {
+    background-color: #f9fafb;
+    border: 2px solid transparent;
+    padding: 12px 15px 12px 40px;
+    /* Space for icon */
+    width: 100%;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text-primary);
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    background-color: #fff;
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+.input-group input:focus+i {
+    color: var(--primary);
+}
+
+/* Actions Row (Remember Me / Forgot) */
+.actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.actions-row a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0;
+    /* Override default a margin */
+}
+
+/* Divider */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* ADJUST HERE: First value (20px) is distance from Sign In button. Third value (0px) is distance to Social Icons */
+    margin: 20px 0 0px 0;
+    width: 100%;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.divider span {
+    padding: 0 10px;
+    color: #9ca3af;
+    font-size: 12px;
+    background: #fff;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+/* Sign In Container - Initially Visible */
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+}
+
+/* Sign Up Container - Initially Hidden */
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Specific spacing for taller signup form */
+.sign-up-container form {
+    padding-top: 55px;
+    /* Increased slightly from 40px to lower the text */
+}
+
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+
+@keyframes show {
+
+    0%,
+    49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+/* Overlay Container */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.overlay {
+    background: #4f46e5;
+    background: -webkit-linear-gradient(to right, #4f46e5, #ec4899);
+    background: linear-gradient(to right, #4f46e5, #ec4899);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+.social-container {
+    margin: 20px 0;
+}
+
+.social-container a {
+    border: 1px solid #DDDDDD;
+    border-radius: 50%;
+    /* Circle */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    height: 40px;
+    width: 40px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+/* Violet Glow on Hover */
+.social-container a:hover {
+    border-color: var(--primary);
+    /* Violet border */
+    color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+    /* Violet Glow */
+    transform: translateY(-3px);
+    /* Floating lift */
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #333;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 200;
+    font-family: 'Inter', sans-serif;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}

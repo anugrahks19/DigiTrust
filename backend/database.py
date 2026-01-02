@@ -124,7 +124,18 @@ class AuditLog(Base):
     action = Column(String)
     user_id = Column(String, nullable=True)
     details_json = Column(JSON)
+    details_json = Column(JSON)
     timestamp = Column(DateTime, default=datetime.utcnow)
+
+
+class ApiKey(Base):
+    __tablename__ = "api_keys"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(String, index=True)
+    key = Column(String, unique=True, index=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    is_active = Column(Boolean, default=True)
 
 
 def get_db():

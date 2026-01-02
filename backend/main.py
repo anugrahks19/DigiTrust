@@ -21,8 +21,13 @@ app.add_middleware(
 )
 
 # Include routers
+from routers import auth, validation, admin, audit, developers
+
+app.include_router(auth.router)
 app.include_router(validation.router)
 app.include_router(admin.router)
+app.include_router(audit.router)
+app.include_router(developers.router)
 
 
 @app.on_event("startup")

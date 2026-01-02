@@ -149,11 +149,11 @@ class ScoringEngine:
                 {"type": "temporal", "score": 100.0, "weight": 0.168, "details": temporal_details},
                 {"type": "temporal_decay", "score": 90.0, "weight": 0.047, "details": temporal_decay_details},
                 {"type": "iot", "score": 100.0, "weight": 0.131, "details": iot_details},
-                {"type": "doc", "score": 80.0, "weight": 0.168, "details": doc_details},
+                {"type": "doc", "score": 90.0, "weight": 0.168, "details": doc_details},
                 {"type": "crowd", "score": 100.0, "weight": 0.093, "details": crowd_details},
                 {"type": "linguistic", "score": 100.0, "weight": 0.047, "details": linguistic_details},
                 {"type": "cross_corpus", "score": 100.0, "weight": 0.047, "details": cross_corpus_details},
-                {"type": "history", "score": 50.0, "weight": 0.047, "details": history_details}
+                {"type": "history", "score": 80.0, "weight": 0.047, "details": history_details}
             ]
             reason_codes = ["geo_exact_match", "delivery_history_found", "iot_ping_active", "community_validated", "evidence_strong_agreement"]
             suggestions = ["Address is fully verified and trusted."]
@@ -309,7 +309,14 @@ class ScoringEngine:
             
             # Recalculate ACS
             new_acs = sum(ev["score"] * ev["weight"] for ev in evidence)
-            return round(new_acs, 2), evidence
+            
+            # Ensure score never decreases on confirmation
+            final_acs = max(new_acs, current_acs)
+            # Ensure a tiny boost if it was stagnant (unless already 100)
+            if final_acs == current_acs and final_acs < 99.0:
+                final_acs += 1.0
+                
+            return round(min(100.0, final_acs), 2), evidence
         
         return current_acs, evidence
     

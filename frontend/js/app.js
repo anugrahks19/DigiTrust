@@ -2,12 +2,17 @@
 // App Configuration & State Management
 // ====================================
 
-const API_BASE_URL = 'https://digitrust1.onrender.com';
+// Global Configuration in window scope for availability across scripts
+window.API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = window.API_BASE_URL; // Keep local const for existing code compatibility
 
 // Global App State
 const appState = {
     currentView: 'submit',
-    currentUser: 'demo_user_001',
+    currentUser: (() => {
+        const user = localStorage.getItem('auth_user');
+        return user ? JSON.parse(user).id : 'demo_user_001';
+    })(),
     lastValidationResult: null,
     theme: 'light'
 };
@@ -32,6 +37,37 @@ document.addEventListener('DOMContentLoaded', () => {
 // ====================================
 
 function switchView(viewName) {
+
+    // 1. Update Navigation State
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        const onclick = link.getAttribute('onclick');
+        if (onclick && onclick.includes(viewName)) {
+            link.classList.add('active');
+        }
+    });
+    // 2. Protected Views Authorization
+    if (viewName === 'history') {
+        // Check for token from Login 2
+        const token = localStorage.getItem('auth_token');
+
+        if (!token) {
+            // Use Integrated Overlay
+            if (window.authManager) {
+                window.authManager.showLoginModal();
+            } else {
+                console.error("AuthManager missing");
+                alert("Please login to access history");
+            }
+            return;
+        }
+
+        // Load data specific to this view
+        if (window.loadUserHistory) {
+            window.loadUserHistory();
+        }
+    }
+
     // Check if accessing admin view
     if (viewName === 'admin') {
         // Check authentication
@@ -52,22 +88,51 @@ function switchView(viewName) {
         }, 100);
     }
 
-    // Hide all views
+    // Hide all views and CLEAR INLINE STYLES (Fix for "Nuclear Option" bug)
     document.querySelectorAll('.view').forEach(view => {
         view.classList.remove('active');
+        view.style.display = ''; // Remove inline display: block
+        view.style.opacity = '';
+        view.style.visibility = '';
+        view.style.cssText = ''; // Clear all inline styles
     });
 
-    // Show selected view
-    const targetView = document.getElementById(`${viewName}View`);
-    if (targetView) {
-        targetView.classList.add('active');
-        appState.currentView = viewName;
+    if (viewName === 'login') {
+        window.location.href = 'http://localhost:3002'; // Redirect to login page
+        return;
+    }
+    // Toggle User Badge Visibility based on View
+    const userMenu = document.getElementById('userMenuContainer');
+    if (userMenu) {
+        if (['admin', 'postman', 'delivery'].includes(viewName)) {
+            userMenu.style.display = 'none'; // Hide in admin/agent views
+        } else {
+            userMenu.style.display = 'block'; // Show in normal app views
+        }
     }
 
-    // Update nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-    });
+    // Show selected view
+    console.log(`[SwitchView] Switching to: ${viewName}`);
+    const targetView = document.getElementById(`${viewName}View`);
+
+    if (targetView) {
+        console.log(`[SwitchView] Found target view: #${viewName}View`);
+        targetView.classList.add('active');
+
+        // NUCLEAR OPTION 2: Reset and Force
+        targetView.style.display = ''; // Clear inline
+        targetView.style.cssText = 'display: block !important; opacity: 1 !important; visibility: visible !important; z-index: 100; position: relative;';
+
+        // DEBUG: Red Border to see if it exists
+        // targetView.style.border = '2px solid red'; 
+
+        appState.currentView = viewName;
+
+        // Ensure Admin/Agent Logout Button is present
+        if (['admin', 'postman', 'delivery'].includes(viewName) && adminAuth) {
+            setTimeout(() => adminAuth.createLogoutButton(viewName), 100);
+        }
+    }
     document.querySelector(`[data-view="${viewName}"]`)?.classList.add('active');
 
     // Load view data
@@ -75,6 +140,10 @@ function switchView(viewName) {
         loadUserHistory();
     } else if (viewName === 'admin') {
         loadAdminDashboard();
+    } else if (viewName === 'privacy') {
+        if (window.loadPrivacyLedger) loadPrivacyLedger();
+    } else if (viewName === 'developers') {
+        if (window.loadDeveloperKey) loadDeveloperKey();
     } else if (viewName === 'postman' || viewName === 'delivery') {
         if (window.loadAgentDashboards) {
             loadAgentDashboards();
@@ -137,6 +206,11 @@ async function apiRequest(endpoint, method = 'GET', data = null) {
 
     if (data) {
         options.body = JSON.stringify(data);
+    }
+
+    // AUTH: Add Token Header if available
+    if (window.authManager && window.authManager.getToken()) {
+        options.headers['Authorization'] = `Bearer ${window.authManager.getToken()}`;
     }
 
     try {
@@ -234,6 +308,51 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ====================================
+// API Helper
+// ====================================
+
+async function apiRequest(endpoint, options = {}) {
+    const token = localStorage.getItem('auth_token');
+
+    const headers = {
+        'Content-Type': 'application/json',
+        ...options.headers
+    };
+
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const config = {
+        ...options,
+        headers
+    };
+
+    try {
+        const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
+
+        if (response.status === 401) {
+            // Token expired or invalid
+            localStorage.removeItem('auth_token');
+            alert("Session expired. Please login again.");
+            if (window.authManager) window.authManager.showLoginModal();
+            else window.location.href = 'http://localhost:3002';
+            throw new Error("Unauthorized");
+        }
+
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.detail || `API Error: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("API Request Failed:", error);
+        throw error;
+    }
+}
 
 // ====================================
 // Utility Functions

@@ -243,17 +243,24 @@ h5 {
 
 .nav-menu {
     display: flex;
-    gap: var(--spacing-md);
+    gap: 1rem;
+    /* Reduced from var(--spacing-md) */
+    align-items: center;
 }
 
 .nav-link {
     position: relative;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: 0.5rem 0.75rem;
+    /* Reduced padding */
     color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
     transition: color var(--transition-base);
     cursor: pointer;
+    white-space: nowrap;
+    /* Prevent text wrapping */
+    font-size: 0.95rem;
+    /* Slightly smaller font */
 }
 
 .nav-link::after {
@@ -274,6 +281,42 @@ h5 {
 
 .nav-link.active::after {
     width: 100%;
+}
+
+/* User Badge (Injected via JS) */
+.user-menu {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.user-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-size: 0.85rem;
+    min-width: 100px;
+}
+
+.user-badge:hover {
+    background: var(--surface-hover);
+    border-color: var(--primary);
+}
+
+.user-badge span {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.user-badge small {
+    font-size: 0.7rem;
+    color: var(--text-muted);
 }
 
 .theme-toggle {
