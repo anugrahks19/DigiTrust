@@ -551,6 +551,12 @@ form {
     transition: transform 0.6s ease-in-out;
 }
 
+/* Force White Text in Overlay (Fix for Light Mode) */
+.overlay-panel h1,
+.overlay-panel p {
+    color: #FFFFFF;
+}
+
 .overlay-left {
     transform: translateX(-20%);
 }
