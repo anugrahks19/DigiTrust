@@ -190,4 +190,9 @@ class AuthManager {
     }
 }
 
-window.authManager = new AuthManager();
+}
+
+// Initialize when DOM is ready to ensure LoginOverlay is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.authManager = new AuthManager();
+});

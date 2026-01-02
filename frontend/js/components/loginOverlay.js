@@ -125,3 +125,6 @@ class LoginOverlay {
         }
     }
 }
+
+// Explicitly export to window
+window.LoginOverlay = LoginOverlay;
