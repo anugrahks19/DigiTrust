@@ -23,7 +23,15 @@ def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 def get_password_hash(password):
-    return pwd_context.hash(password)
+    try:
+        print(f"[DEBUG] Hashing password: Type={type(password)}, Length={len(str(password))}, Value={str(password)[:10]}...")
+        if len(str(password)) > 70:
+            print(f"⚠️ WARNING: Password too long for bcrypt! Truncating to 50 chars.")
+            password = str(password)[:50]
+        return pwd_context.hash(password)
+    except Exception as e:
+        print(f"❌ Hashing Failed: {e}")
+        raise e
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None): # Modified: Type hint for expires_delta
     to_encode = data.copy()
