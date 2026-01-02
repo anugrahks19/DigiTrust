@@ -180,3 +180,158 @@ if (forgotPasswordLink) {
         }
     });
 }
+
+// --- SOCIAL LOGIN LOGIC (PORTED) ---
+
+const GOOGLE_CLIENT_ID = '649391474644-pmpa1ug15ad87kafqa7utm27uiitk0om.apps.googleusercontent.com'; // From login2/app_login.js
+
+let tokenClient;
+
+function initGoogleLogin() {
+    if (typeof google === 'undefined') return;
+
+    tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: GOOGLE_CLIENT_ID,
+        scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+        callback: async (tokenResponse) => {
+            if (tokenResponse && tokenResponse.access_token) {
+                handleGoogleLogin(tokenResponse.access_token);
+            }
+        },
+    });
+}
+
+const checkGoogleLoad = setInterval(() => {
+    if (typeof google !== 'undefined') {
+        initGoogleLogin();
+        clearInterval(checkGoogleLoad);
+    }
+}, 500);
+
+async function handleGoogleLogin(accessToken) {
+    showToast('Verifying with Google...', false);
+
+    try {
+        const userInfoReq = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+            headers: { Authorization: `Bearer ${accessToken}` }
+        });
+        const googleUser = await userInfoReq.json();
+
+        showToast(`Verifying identity for ${googleUser.name}...`, false);
+
+        // SWAP TOKEN: Exchange Google Context for Internal JWT
+        const swapResponse = await fetch(`${API_BASE_URL}/api/auth/login/google`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                token: accessToken,
+                email: googleUser.email,
+                name: googleUser.name,
+                picture: googleUser.picture
+            })
+        });
+
+        if (!swapResponse.ok) throw new Error("Token Swap Failed");
+        const internalAuth = await swapResponse.json();
+
+        showToast(`Welcome to DigiTrust, ${internalAuth.name}!`);
+
+        // Save Internal Token
+        localStorage.setItem('auth_token', internalAuth.access_token);
+        localStorage.setItem('auth_user', JSON.stringify({
+            id: internalAuth.user_id,
+            name: internalAuth.name
+        }));
+
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 1000);
+
+    } catch (error) {
+        console.error(error);
+        showToast('Google Login Failed: ' + error.message, true);
+    }
+}
+
+// --- Social Login Handler (GitHub & Discord) ---
+async function startSocialLogin(provider) {
+    console.log(`Starting login for ${provider}...`);
+    showToast(`Contacting ${provider}...`, false);
+
+    try {
+        const backendUrl = `${API_BASE_URL}/api/auth/login/${provider.toLowerCase()}`;
+        console.log(`Fetching: ${backendUrl}`);
+
+        const response = await fetch(backendUrl);
+        console.log(`Response status: ${response.status}`);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            alert(`Backend Error (${response.status}): ${errorText}`);
+            throw new Error(`Backend replied ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Backend data:", data);
+
+        if (data.url) {
+            window.location.href = data.url;
+        } else {
+            alert("Backend did not return a Redirect URL!");
+        }
+    } catch (e) {
+        console.error(e);
+        alert(`Login Error: ${e.message}`);
+        showToast(`Failed to start ${provider} login`, true);
+    }
+}
+
+// --- Click Handlers ---
+document.querySelectorAll('.social-container a').forEach(icon => {
+    icon.addEventListener('click', (e) => {
+        e.preventDefault();
+        const iconClass = icon.querySelector('i').className;
+
+        if (iconClass.includes('google')) {
+            if (GOOGLE_CLIENT_ID.includes('YOUR_')) {
+                alert("Setup Google ID!");
+            } else if (tokenClient) {
+                tokenClient.requestAccessToken();
+            } else {
+                showToast("Google API loading...", true);
+            }
+        }
+        else if (iconClass.includes('github')) {
+            startSocialLogin('github');
+        }
+        else if (iconClass.includes('discord')) {
+            startSocialLogin('discord');
+        }
+    });
+});
+
+// --- Handle Social Redirect Back (Callback) ---
+window.onload = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const socialToken = urlParams.get('social_token');
+    if (socialToken) {
+        // We are back from GitHub/Discord!
+        const name = urlParams.get('user_name');
+        const id = urlParams.get('user_id');
+        const provider = urlParams.get('provider');
+        const access_token = urlParams.get('token') || socialToken; // Support both
+
+        showToast(`Logged in via ${provider}!`);
+
+        localStorage.setItem('auth_token', access_token);
+        localStorage.setItem('auth_user', JSON.stringify({ id, name }));
+
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+
+        // Redirect to Home
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 1000);
+    }
+};
