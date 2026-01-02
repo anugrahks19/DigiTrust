@@ -65,7 +65,7 @@ class AuthManager {
             this.overlay.show();
         } else {
             console.warn("LoginOverlay not loaded, fallback to redirect");
-            window.location.href = 'http://localhost:3002';
+            window.location.href = '/';
         }
     }
 

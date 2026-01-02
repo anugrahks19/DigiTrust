@@ -68,7 +68,7 @@ async function generateNewKey() {
 function updateQuickStartExample(key) {
     const codeBlock = document.querySelector('#developersView code');
     if (codeBlock) {
-        codeBlock.innerHTML = `curl -X POST "http://localhost:8000/api/validate" \\
+        codeBlock.innerHTML = `curl -X POST "https://digitrust1.onrender.com/api/validate" \\
      -H "Authorization: Bearer <span style="color: #4ade80; font-weight: bold;">${key}</span>" \\
      -H "Content-Type: application/json" \\
      -d '{

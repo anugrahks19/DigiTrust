@@ -15,7 +15,7 @@ async function loadPrivacyLedger() {
             return;
         }
 
-        const response = await fetch('http://localhost:8000/api/audit/logs', {
+        const response = await fetch('https://digitrust1.onrender.com/api/audit/logs', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
