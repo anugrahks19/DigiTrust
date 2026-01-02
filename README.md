@@ -34,6 +34,11 @@ cd backend
 # Install dependencies
 pip install -r requirements.txt
 
+# Configure Environment
+# Copy the example env file and add your API keys (Required for Social Login)
+cp .env.example .env
+# Edit .env and add GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, etc.
+
 # Initialize database and start server
 python main.py
 ```
