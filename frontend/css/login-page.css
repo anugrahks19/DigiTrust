@@ -295,9 +295,8 @@ form {
 
 .subtitle {
     font-size: 14px;
-    color: #4b5563;
-    /* Softer dark gray */
-    /* Darker text */
+    color: #6b7280;
+    /* Lighter gray */
     margin-bottom: 25px;
     margin-top: 10px;
     font-weight: 600;
