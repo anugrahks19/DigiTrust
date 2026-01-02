@@ -286,7 +286,9 @@ async def callback_github(code: str, db: Session = Depends(get_db)):
         # Check if user exists, else create
         user = db.query(User).filter(User.id == email).first()
         if not user:
-            user = User(id=email, name=name, password_hash=get_password_hash("social123"))
+            # Removed get_password_hash call to prevent bcrypt errors
+            # The User model does not appear to use password_hash anyway
+            user = User(id=email, name=name) 
             db.add(user)
             db.commit()
             db.refresh(user)

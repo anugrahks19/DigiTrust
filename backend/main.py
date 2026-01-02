@@ -43,8 +43,8 @@ async def root():
     """Root endpoint with API info"""
     return {
         "name": "DigiTrust-AVP Address Validation Platform",
-        "version": "1.0.1 (Social Login Fix Applied)",
-        "last_updated": "2026-01-02 23:30",
+        "version": "1.0.2 (Hashing Bypass Applied)",
+        "last_updated": "2026-01-03 00:40",
         "status": "running",
         "endpoints": {
             "validation": "/api/validate",
