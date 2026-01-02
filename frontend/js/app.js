@@ -3,7 +3,8 @@
 // ====================================
 
 // Global Configuration in window scope for availability across scripts
-window.API_BASE_URL = 'http://localhost:8000';
+// window.API_BASE_URL = 'http://localhost:8000'; // Localhost
+window.API_BASE_URL = 'https://digitrust1.onrender.com'; // Production Render URL
 const API_BASE_URL = window.API_BASE_URL; // Keep local const for existing code compatibility
 
 // Global App State
