@@ -70,6 +70,13 @@ function setupFormSubmission() {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // AUTH CHECK: Ensure user is logged in
+        if (!localStorage.getItem('auth_token')) {
+            alert("Please login to validate address!");
+            window.location.href = '/login.html';
+            return;
+        }
+
         // Show Custom Loader
         const loaderOverlay = createLoaderOverlay();
         document.body.appendChild(loaderOverlay);
