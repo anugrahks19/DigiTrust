@@ -310,50 +310,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ====================================
-// API Helper
-// ====================================
 
-async function apiRequest(endpoint, options = {}) {
-    const token = localStorage.getItem('auth_token');
-
-    const headers = {
-        'Content-Type': 'application/json',
-        ...options.headers
-    };
-
-    if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
-    }
-
-    const config = {
-        ...options,
-        headers
-    };
-
-    try {
-        const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-
-        if (response.status === 401) {
-            // Token expired or invalid
-            localStorage.removeItem('auth_token');
-            alert("Session expired. Please login again.");
-            if (window.authManager) window.authManager.showLoginModal();
-            else window.location.href = '/'; // Redirect to home/login
-            throw new Error("Unauthorized");
-        }
-
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.detail || `API Error: ${response.status}`);
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("API Request Failed:", error);
-        throw error;
-    }
-}
 
 // ====================================
 // Utility Functions
